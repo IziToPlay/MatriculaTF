@@ -38,7 +38,7 @@ public class ProfessorController {
 		return PROFESSOR_VIEW;
 	}
 
-	
+	/*as*/
 	/*@GetMapping
 	public ModelAndView getAllProfessors(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
