@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.matricula.model.entity.Course;
-import com.matricula.model.entity.Professor;
 import com.matricula.model.entity.Student;
 import com.matricula.service.StudentService;
 
