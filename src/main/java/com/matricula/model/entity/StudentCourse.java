@@ -62,10 +62,6 @@ public class StudentCourse {
 		this.enrollment = enrollment;
 	}
 
-	@Override
-	public String toString() {
-		return "StudentCourse [id=" + id + ", student=" + student + ", course=" + course + ", enrollment=" + enrollment
-				+ "]";
-	}
+	
 	
 }
