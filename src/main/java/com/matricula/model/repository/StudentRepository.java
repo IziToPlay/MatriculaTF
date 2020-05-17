@@ -29,5 +29,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	List<Student> findAll();
 
 	@Query("SELECT s FROM Student s WHERE s.id like %?1%")
-	List<Student> finById(String id,Pageable pageable);
+	List<Student> finById(String id);
 }
