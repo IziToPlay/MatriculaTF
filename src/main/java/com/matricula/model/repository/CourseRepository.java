@@ -14,7 +14,7 @@ import com.matricula.model.entity.Student;
 
 
 public interface CourseRepository extends JpaRepository<Course, Long>{
-	
+
     @Query(value = "SELECT MAX(id) FROM Course")
     Long findTopByOrderByIdDesc();
   
