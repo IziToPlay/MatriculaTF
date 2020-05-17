@@ -31,5 +31,4 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, L
 
 	@Query("SELECT s FROM Student s WHERE s.id like %?1%")
 	Page<Student> finById(String id,Pageable pageable);
-
 }
