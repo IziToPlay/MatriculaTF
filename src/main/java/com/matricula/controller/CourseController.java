@@ -29,8 +29,6 @@ import com.matricula.service.ProfessorService;
 @RequestMapping("/courses")
 public class CourseController {
 	
-	
-	
 	@Autowired
 	private CourseService courseService;
 	
