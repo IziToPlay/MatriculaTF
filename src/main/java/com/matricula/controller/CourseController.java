@@ -90,7 +90,7 @@ public class CourseController {
 		
 		model.addAttribute("course", new Course());
 		professor = new Professor();
-		List<Professor> professors = professorService.getAll();
+		List<Professor> professors = professorService.getAllProfessors();
 		model.addAttribute("professors", professors);
 		
 		return "courses/new";
@@ -124,12 +124,12 @@ public class CourseController {
 	}
 	
 	public void getAllCareers() {
-		careers.add(0, "IngenierÃ­a de Sistemas");
-		careers.add(1, "IngenierÃ­a de Software");
-		careers.add(2, "IngenierÃ­a Industrial");
-		careers.add(3, "EconomÃ­a");
-		careers.add(4, "AdministraciÃ³n");
-		careers.add(5, "IngenierÃ­a Civil");
+		careers.add(0, "Ingenieria de Sistemas");
+		careers.add(1, "Ingenieria de Software");
+		careers.add(2, "Ingenieria Industrial");
+		careers.add(3, "Economia");
+		careers.add(4, "Administracion");
+		careers.add(5, "Ingenieria Civil");
 	}
 	
 	public void getAllSemesters() {

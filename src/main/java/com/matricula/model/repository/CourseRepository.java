@@ -28,7 +28,7 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     //FindById esta incorporado en el Crud de List
     
   //Query para el Admin
-    List<Course> findAll();
+   // List<Course> findAll();
     
  /* //Query para el Admin
     @Query("SELECT c FROM Course c WHERE c.name like %?1%")

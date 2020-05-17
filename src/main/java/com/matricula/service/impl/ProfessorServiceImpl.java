@@ -67,16 +67,6 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		}
 	}
 
-	@Override
-	public List<Professor> findAll() {
-		return professorRepository.findAll();
-	}
-
-	@Override
-	public List<Professor> findById2(Long id) {
-		return professorRepository.finById(id);
-	}
-
 	/*@Override
 	public Page<Professor> findByLastName(String lastName, Pageable pageable) {
 		// TODO Auto-generated method stub

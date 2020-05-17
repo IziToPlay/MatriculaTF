@@ -20,12 +20,4 @@ public interface ProfessorService {
 	Professor findById(Long id);
 
 	Professor getLatestEntry();
-	
-	
-    List<Professor> findAll();
-
-    List<Professor> findById2 (Long id);
-    
-	
-	
 }

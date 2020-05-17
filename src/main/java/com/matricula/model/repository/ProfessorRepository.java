@@ -37,10 +37,6 @@ public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
      * @return          a page of entities that fulfill the restrictions
      *                  specified by the Pageable object
      */
-    List<Professor> findAll();
-    
-    @Query("SELECT p FROM Professor p WHERE p.id=?1")
-    List<Professor> finById(Long id);
-    
+    //List<Professor> findAll();  
     
 }
