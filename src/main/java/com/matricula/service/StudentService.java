@@ -21,9 +21,8 @@ public interface StudentService {
     List<Student> finById(Long Id);
 	/*
 	Incident getLatestEntry();
-	
-	boolean valid(Incident incident);
+	*/
+	//boolean valid(Student student);
 	
 
-    */
 }
