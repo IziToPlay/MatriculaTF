@@ -42,6 +42,7 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		Student student = findById(id);
 
+		student.setAccount(studentDetails.getAccount());
 		student.setCareer(studentDetails.getCareer());
 		student.setLastName(studentDetails.getLastName());
 		student.setName(studentDetails.getName());
