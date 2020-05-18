@@ -14,6 +14,7 @@ import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Professor;
 import com.matricula.model.entity.Student;
 import com.matricula.service.StudentService;
+import com.matricula.service.UserService;
 
 @Controller
 @RequestMapping("/students")
@@ -22,18 +23,22 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService; 
 	
+	@Autowired
+	private UserService userService; 
+	
 	/**@Autowired
 	private AccountService accountService;*/
 	
 	private Student student; 
 	private Account account;
 	private List<Student> students; 
+	private Long numerator=(long) -1;
 	
 	@GetMapping("/list")
 	public String showAllStudents(Model model) throws Exception{
 		
 		try {
-			model.addAttribute("students", studentService.getAllStudent());
+			model.addAttribute("students", studentService.getAllStudents());
 			} catch(Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
@@ -45,17 +50,17 @@ public class StudentController {
 	public List<Student> searchStudentById(Long id, Model model) {
 		try {
 			if (id!=null) {
-				students = studentService.finById(id);
+				students = studentService.finddById(id);
 				if (!students.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("studentss", students);
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("students", studentService.getAllStudent());
+					model.addAttribute("students", studentService.getAllStudents());
 				}
 			} else {
-				model.addAttribute("error", "Debe completar el campo de búsqueda.");
-				model.addAttribute("students", studentService.getAllStudent());
+				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("students", studentService.getAllStudents());
 			}
 		} catch (Exception e) {
 			model.addAttribute("Error student:", e.getMessage());
@@ -76,7 +81,10 @@ public class StudentController {
 	@PostMapping("/save")
 	public String createStudentForm(Student student, Model model) throws Exception {
 		long id;
+		numerator++;
+		student.setAccount(userService.findById(numerator));
 		id=studentService.createStudent(student).getId();
+
 		return "students/list";
 	}
 	

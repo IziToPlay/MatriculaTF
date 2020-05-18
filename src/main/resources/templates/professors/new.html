@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header text-white bg-primary">Registrar Profesor</div>				
+				<div class="card-body">
+						<form th:object="${professor}" th:action="@{/professors/save}"
+					th:method="post">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+					
+					<div class="form-group">
+						<label for="name">Nombres</label> <input type="text"
+							class="form-control" id="name" aria-describedby="name"
+							th:field="*{name}" placeholder="type here ..." />
+					</div>
+					
+					<div class="form-group">
+						<label for="lastName">Apellidos</label> <input type="text"
+							class="form-control" id="lastName" aria-describedby="lastName"
+							th:field="*{lastName}" placeholder="type here ..." />
+					</div>
+				
+					<a th:href="@{/professors/list}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Confirmar</button>
+				</form>
+				</div>
+			</div>
+		</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

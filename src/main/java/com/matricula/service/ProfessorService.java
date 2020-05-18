@@ -18,6 +18,8 @@ public interface ProfessorService {
 	void deleteProfessor(Long professorId);
 	
 	Professor findById(Long id);
+	
+	List<Professor> finddById(Long id);
 
 	Professor getLatestEntry();
 }

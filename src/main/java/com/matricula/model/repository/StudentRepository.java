@@ -30,9 +30,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
      */
 	List<Student> findAll();
 
-	@Query("SELECT s FROM Student s WHERE s.id like %?1%")
-	List<Student> finById(Long id);
+	@Query("SELECT s FROM Student s WHERE s.id=?1")
+	Student fetchById(Long id);
 	
-	 @Query("SELECT s FROM Student s WHERE s.account.user_id=:a.user_id")
-	 Student findStudentByAccount(@Param("a") Account a);
+	@Query("SELECT s FROM Student s WHERE s.id=?1")
+	List<Student> fetchhById(Long id);
+	
+	 @Query("SELECT s FROM Student s WHERE s.account.id=?1")
+	 Student findStudentByAccount(Long accountId);
 }

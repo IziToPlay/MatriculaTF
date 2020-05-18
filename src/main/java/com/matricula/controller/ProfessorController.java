@@ -1,5 +1,6 @@
 package com.matricula.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Professor;
+import com.matricula.model.entity.Student;
 import com.matricula.service.ProfessorService;
 
 @Controller
@@ -25,6 +28,8 @@ public class ProfessorController {
 	
 	@Autowired
 	private ProfessorService professorService;
+	
+	private List<Professor> professors;
 	
 	@GetMapping("/list")
 	public String showAllProfessors(Model model) throws Exception {
@@ -35,70 +40,61 @@ public class ProfessorController {
 	}
 		return "courses/list";
 	}
+	
+	@GetMapping("/search")
+	public List<Professor> searchProfessorById(Long id, Model model) {
+		try {
+			if (id!=null) {
+				professors=professorService.finddById(id);
+				if (!professors.isEmpty()) {
+					model.addAttribute("info", "Busqueda realizada correctamente");
+					model.addAttribute("professors", professors);
+				} else {
+					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("professors", professorService.getAllProfessors());
+				}
+			} else {
+				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("professors", professorService.getAllProfessors());
+			}
+		} catch (Exception e) {
+			model.addAttribute("Error Professor:", e.getMessage());
+		}
+		return professors;
+	}
 
 	@GetMapping("/new")
-	public String newProfessor(Model model) {
-
-		// in case of redirection model will contain article
-		if (!model.containsAttribute("professor")) {
-			model.addAttribute("professor", new Professor());
-			}
-		return PROFESSOR_ADD_FORM_VIEW;
-	}
-	
-	@PostMapping("/create")
-	public String createProfessor(@Valid Professor professor, BindingResult result, Model model, RedirectAttributes attr) {
-
-		if (result.hasErrors()/* || productService.valid(product) == false*/) {
-
+	public String newProfessor(Model model){
 		
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.professor", result);
-			attr.addFlashAttribute("professor", professor);
-			return "redirect:/professors/new";
-		}
-		Professor newProfessor = professorService.createProfessor(professor);
-		model.addAttribute("professor", newProfessor);
-
-		return "redirect:/professors/" + newProfessor.getId();//verificar despues
+		model.addAttribute("professor", new Professor());
+		return "professors/new";
 	}
 	
-	@GetMapping("{id}/edit")
-	public String editProfessor(@PathVariable(value = "id") Long professorId, Model model) {
-		/*
-		 * in case of redirection from '/article/{id}/update' model will contain product
-		 * with field values
-		 */
-		if (!model.containsAttribute("professor")) {
-			model.addAttribute("professor", professorService.findById(professorId));
-			
-		}
-		return PROFESSOR_EDIT_FORM_VIEW;
+	@PostMapping("/save")
+	public String createProfessorForm(Professor professor, Model model) throws Exception {
+		long id;
+		id=professorService.createProfessor(professor).getId();
+		return "professors/list";
 	}
 	
-	@PostMapping(path = "/{id}/update")//revisar
-	public String updateProfessor(@PathVariable(value = "id") Long professorId, @Valid Professor professorDetails,
-			BindingResult result, Model model, RedirectAttributes attr) {
-
-		if (result.hasErrors()/* || productService.valid(productDetails) == false*/) {//revisar
-
-			/// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.professor", result);
-			attr.addFlashAttribute("professor", professorDetails);
-
-			attr.addFlashAttribute("error", "No se permite esta incidencia");
-
-			return "redirect:/professors/" + professorDetails.getId() + "/edit";
-		}
-
-		professorService.updateProfessor(professorId, professorDetails);
-		model.addAttribute("professor", professorService.findById(professorId));
-		return "redirect:/professors/" + professorId;
-	}
+	@GetMapping("/edit/{id}")
+    public String editProfessorForm(@PathVariable("id") long id, Model model) throws Exception {
+        Professor professor = professorService.findById(id);
+        model.addAttribute("professor", professor);
+        return "professors/edit";
+    }
 	
-	@GetMapping(value = "/{id}/delete")
-	public String deleteProfessor(@PathVariable("id") Long professorId) {
-		professorService.deleteProfessor(professorId);
-		return "redirect:/professors";
+	@PostMapping("/update/{id}")
+    public String updateProfessor(@PathVariable("id") long id, Professor professor) throws Exception {
+        professorService.updateProfessor(id, professor);
+        return "professors/new";    
+    }
+	
+	@GetMapping("/delete/{id}")
+	public String deleteProfessor(@PathVariable("id") long id, Model model) throws Exception {
+		professorService.deleteProfessor(professorService.findById(id).getId());
+		model.addAttribute("success", "Profesor eliminado correctamente");
+		return "redirect:/professors/list";
 	}
 	
 	/*@GetMapping("/querysProfessors")

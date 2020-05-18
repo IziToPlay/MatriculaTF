@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+
+			<div class="card-header">Gestionar Profesores</div>
+			<div class="card-body">
+
+				<div class="title">
+							<h2> Profesores </h2>
+							<a href="/professors/new" class="btn btn-primary"> Nuevo Profesor </a>
+							<h6>__________________________________________________________________</h6>
+						</div>
+
+									<form action="/professors/search" method="GET">
+								<div class="form-row align-items-center">
+								<div class="col-auto">
+									<label class="sr-only" for="inputId">Profesor a Buscar</label>
+									<input id="id" type="text" class="form control" name="id">
+								</div>
+								
+								<div class="col-auto">
+									<button type="submit" class="btn btn-primary">Buscar</button>
+								</div>
+								</div>
+							</form>			
+
+	<div class ="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<th>Seleccionar</th>
+							<th>Seleccionar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="professor : ${professor}">
+
+							<td th:text="${professor.id}">MatriculaTF</td>
+							<td th:text="${professor.name}">MatriculaTF</td>
+							<td th:text="${professor.lastName}">MatriculaTF</td>
+							<td><a th:href="@{'/professors/edit/' + ${professor.id}}"
+								class="btn btn-warning">Modificar</a></td>
+							<td><a th:href="@{'/professors/delete/' + ${professor.id}}"
+								class="btn btn-info">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+
+	</div>
+	
+</body>
+</html>

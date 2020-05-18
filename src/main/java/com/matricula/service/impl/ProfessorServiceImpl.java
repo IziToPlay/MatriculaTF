@@ -51,6 +51,12 @@ public class ProfessorServiceImpl implements ProfessorService  {
 	Professor professor=professorRepository.fetchById(id);
 		return professor;
 	}
+	
+	@Override
+	public List<Professor> finddById(Long id) {
+	List<Professor> professors=professorRepository.fetchhById(id);
+		return professors;
+	}
 
 	@Override
 	public Professor getLatestEntry() {

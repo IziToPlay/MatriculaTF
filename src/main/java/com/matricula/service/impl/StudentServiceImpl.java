@@ -19,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 	private StudentRepository studentRepository;
 
 	@Override 
-	public List<Student> getAllStudent() {
+	public List<Student> getAllStudents() {
 		List<Student> students = new ArrayList<>();
 		studentRepository.findAll().iterator().forEachRemaining(students::add);
 		return students;
@@ -55,17 +55,21 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void deleteStudent(Long studentId) {
-		studentRepository.delete(findById(studentId));
+		studentRepository.deleteById(studentId);
 	}
 
 	@Override
 	public Student findById(Long id) {
-		Optional<Student> student = studentRepository.findById(id);
+		Student student = studentRepository.fetchById(id);
 
-		/*if (!student.isPresent()) {
-			throw new ResourceNotFoundException("There is no Student with ID = " + id);
-		}*/
-		return student.get();
+		return student;
+	}
+	
+	@Override
+	public List<Student> finddById(Long id) {
+		List<Student> students = studentRepository.fetchhById(id);
+
+		return students;
 	}
 /**
 	@Override
@@ -81,7 +85,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student getLatestEntry() {
-		List<Student> students = getAllStudent();
+		List<Student> students = getAllStudents();
 		if (students.isEmpty()) {
 			return null;
 		} else {
@@ -90,23 +94,20 @@ public class StudentServiceImpl implements StudentService {
 		}
 	}
 
-	@Override
-	public List<Student> findAll() {
-		return studentRepository.findAll();
-	}
-	
-	@Override
-	public List<Student> finById(Long id) {
+	/*@Override
+	public List<Student> findById(Long id) {
 		return studentRepository.finById(id);
+	}*/
+
+	public Student findStudentByAccount(){
+		Student student;
+		//Account account=accountServiceImpl.getLoggedUser();
+		//student=studentRepository.findStudentByAccount(account.getId());
+		Long id=(long) 0;
+		student=studentRepository.findStudentByAccount(id);
+		return student;
 	}
 
-	public Student findStudentByAccount(Account account)
-	{
-		Student estudiante;
-		estudiante=studentRepository.findStudentByAccount(account);
-		return estudiante;
-	}
-	
 	/**@Override
 	public List<Student> getAllStudent() {
 		// TODO Auto-generated method stub

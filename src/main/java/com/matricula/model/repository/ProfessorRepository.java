@@ -22,4 +22,6 @@ public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
     @Query(value="SELECT p FROM Professor p WHERE p.id=?1")
     Professor fetchById(Long id);
     
+    @Query(value="SELECT p FROM Professor p WHERE p.id=?1")
+    List<Professor> fetchhById(Long id);
 }

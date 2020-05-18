@@ -11,7 +11,7 @@ import com.matricula.model.entity.Student;
 
 public interface StudentService {
 
-	List<Student> getAllStudent();
+	List<Student> getAllStudents();
 	
 	Student createStudent(Student student);
 	
@@ -21,11 +21,13 @@ public interface StudentService {
 	
 	Student findById(Long id);
 	
+	List<Student> finddById(Long id);
+	
 	Student getLatestEntry();
 	
-    List<Student> findAll();
- /*Encontrar cuenta de estudiante*/Student findStudentByAccount(Account account);
-    List<Student> finById(Long Id);
+	/*Encontrar cuenta de estudiante*/
+	Student findStudentByAccount();
+    //List<Student> findById(Long Id);
 	/*
 	Incident getLatestEntry();
 	*/
