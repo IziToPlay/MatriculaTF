@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.matricula.model.entity.Account;
+import com.matricula.model.entity.Professor;
 import com.matricula.model.entity.Student;
 import com.matricula.service.StudentService;
 
@@ -20,7 +22,11 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService; 
 	
+	/**@Autowired
+	private AccountService accountService;*/
+	
 	private Student student; 
+	private Account account;
 	private List<Student> students; 
 	
 	public String showAllStudents(Model model) throws Exception{
@@ -60,6 +66,9 @@ public class StudentController {
 	public String newStudent(Model model){
 		
 		model.addAttribute("student", new Student());
+		//account = new Account();
+		//List<Account> accounts = accountService.getAllAccounts();
+		//model.addAttribute("accounts", accounts);
 		return "students/new";
 	}
 	
