@@ -22,7 +22,7 @@ public class Professor {
 	@NotEmpty(message="Ingrese nombre")
 	private String name;
 	
-	@Column(name = "lastName")
+	@Column(name = "last_name")
 	@NotEmpty(message="Ingrese apellido")
 	private String lastName;
 	

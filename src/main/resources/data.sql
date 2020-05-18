@@ -1,3 +1,10 @@
+INSERT INTO professors (name, last_name) VALUES ('Henry', 'Martinez');
+INSERT INTO professors (name, last_name) VALUES ('Mario', 'Castro');
+INSERT INTO professors (name, last_name) VALUES ('Julio', 'Gomez');
+INSERT INTO professors (name, last_name) VALUES ('Hugo', 'Mosquera');
+INSERT INTO professors (name, last_name) VALUES ('Cesar', 'Garcia');
+INSERT INTO professors (name, last_name) VALUES ('Hernan', 'Alvitez');
+
 INSERT INTO buses (plate,quantity_seat) VALUES ('ABC526', 40);
 INSERT INTO buses (plate,quantity_seat) VALUES ('XYZ158', 40);
 INSERT INTO buses (plate,quantity_seat) VALUES ('AXH165', 40);
