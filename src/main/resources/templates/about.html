@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FREUD</title>
+    <title>Academia Freud</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,9 +49,9 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a  href="index.html">Inicio</a></li>
+                                        <li><a th:href="@{/}">Inicio</a></li>
                                         <li><a class="active" th:href="@{/about}">Nosotros</a></li>                                     
-                                        <li><a href="contact.html">Contáctanos</a></li>
+                                        <li><a th:href="@{/contact}">Contáctanos</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -94,12 +94,28 @@ La academia dicta todos los cursos de preparación para un examen de admisión. 
                     </div>
                 </div>
                 <div class="col-xl-6 offset-xl-1 col-lg-6">
-                    
+                    <img src="img/freud.jpg" alt="" widht=590px height=685px>
                 </div>
             </div>
+            
+            <div class="section_title text-center mb-100">
+            			
+            			<br><br><br>
+                        <h3>Misión</h3>
+                        <p>Proveer a nuestros alumnos de los conocimientos que necesitan para <br>
+                        poder rendir los exámenes de admisión de la mejor manera y <br>
+                        así puedan ingresar a la universidad que tanto desean.</p>
+                       	<br><br>
+                       	<h3>Visión</h3>
+                       	<p>Ser la academia preferida por los postulantes a las principales <br>
+                       	universidades del país gracias a nuestra excelencia académica, <br>
+                       	plana docente, malla curricular y metodologías de enseñanza, utilizando <br>
+                       	la tecnología como principal factor innovador.</p>
+                    </div>
         </div>
     </div>
     <!-- about_area_end -->
+    
 
     <!-- testimonial_area_start -->
     <div class="testimonial_area testimonial_bg_1 overlay">
