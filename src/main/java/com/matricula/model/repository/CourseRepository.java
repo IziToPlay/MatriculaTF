@@ -21,9 +21,8 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     List<Course> findByName(@Param("name") String name);
 
     //Query para el Alumno para ver sus cursos a matricularse
-    @Query("SELECT c FROM Course c inner join Student s on c.career=s.career WHERE s.career="
-    		+ "c.career AND s.semester=c.semester AND c.amount>0")
-    List<Course> findCoursesAvailables(@Param("student") Student student);
+    @Query("SELECT c FROM Course c WHERE c.career=:s.career AND c.semester=:s.semester AND c.amount>0")
+    List<Course> findCoursesAvailables(@Param("s") Student student);
         
     //FindById esta incorporado en el Crud de List
     

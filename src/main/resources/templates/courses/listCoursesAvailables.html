@@ -8,27 +8,13 @@
 
 		<div class="card" style="max-width: 100%;">
 
-			<div class="card-header">Mantenimiento Cursos</div>
+			<div class="card-header">Mi Matricula</div>
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Cursos </h2>
-							<a href="/courses/new" class="btn btn-primary"> Nuevo Curso </a>
-							<h6>__________________________________________________________________</h6>
-						</div>
-
-									<form action="/courses/searchCourse" method="GET">
-								<div class="form-row align-items-center">
-									<label for="course">Curso a Buscar</label> 
-									<select id="course" th:field="*{courses}">
-									<option th:each="course : ${courses}" th:text="${course.name}" th:value="${course.name}"></option>
-									</select>						
-														
-								<div class="col-auto">
-									<button type="submit" onclick="getData()" class="btn btn-primary">Search</button>
-								</div>
-								</div>
-							</form>			
+							<h2> Visualizar Cursos Disponibles </h2>
+							
+						</div>		
 
 	<div class ="table-responsive">
 				<table class="table table-striped">
@@ -42,7 +28,6 @@
 							<th>Hora Final</th>
 							<th>Vacantes</th>
 							<th>Seleccionar</th>
-							<th>Seleccionar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,10 +39,8 @@
 							<td th:text="${course.day}">MatriculaTF</td>
 							<td th:text="${course.startTime}">MatriculaTF</td>
 							<td th:text="${course.endTime}">MatriculaTF</td>
-							<td><a th:href="@{'/courses/edit/' + ${course.id}}"
-								class="btn btn-warning">Modificar</a></td>
-							<td><a th:href="@{'/courses/delete/' + ${course.id}}"
-								class="btn btn-info">Eliminar</a></td>
+							<td><a th:href="@{'/studentCourses/register/' + ${course.id}}"
+								class="btn btn-warning">Curso</a></td>
 						</tr>
 					</tbody>
 				</table>

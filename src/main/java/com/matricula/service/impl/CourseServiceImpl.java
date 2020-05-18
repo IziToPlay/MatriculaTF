@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Course;
@@ -86,6 +84,4 @@ public class CourseServiceImpl implements CourseService {
 		Account account=accountServiceImpl.getLoggedUser();
 		return courseRepository.findCoursesAvailables(studentServiceImpl.findStudentByAccount(account.getId()));
 	}
-
-
 }

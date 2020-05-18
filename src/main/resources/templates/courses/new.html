@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header text-white bg-primary">Registrar Curso</div>				
+				<div class="card-body">
+						<form th:object="${course}" th:action="@{/courses/save}"
+					th:method="post">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+					
+					<div class="form-group">
+						<label for="name">Nombre</label> <input type="text"
+							class="form-control" id="name" aria-describedby="name"
+							th:field="*{name}" placeholder="type here ..." />
+					</div>
+					
+					<div class="form-group">
+								<label for="career">Carrera</label> <select id="career"
+									name="career">
+									<option value="Ingenieria de Sistemas">Ingenieria de Sistemas</option>
+									<option value="Ingenieria de Software">Ingenieria de Software</option>
+									<option value="Ingenieria Industrial">Ingenieria Industrial</option>
+									<option value="Economia">Economia</option>
+									<option value="Administracion">Administracion</option>
+									<option value="Ingenieria Civil">Ingenieria Civil</option>	
+								</select>
+					</div>
+		
+					<div class="form-group">
+						<label for="professor">Profesor</label> <select id="professor"
+							class="form-control" th:field="*{professors}" multiple="multiple">
+							<option th:each="professor : ${professors}"
+								th:text="${professor.name + professor.lastName}" th:value="${professor.id}"></option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+								<label for="day">Dia</label> <select id="day"
+									name="day">
+									<option value="Lunes">Lunes</option>
+									<option value="Martes">Martes</option>
+									<option value="Miercoles">Miercoles</option>
+									<option value="Jueves">Jueves</option>
+									<option value="Viernes">Viernes</option>
+									<option value="Sabado">Sabado</option>
+									<option value="Domingo">Domingo</option>
+		
+								</select>
+					</div>
+					
+					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
+  					<input type="text" id="startTime" class="form-control" placeholder="Elegir hora inicial">
+  					<label for="twelve-hour-clock">Hora Inicial</label>
+ 					 <i class="fas fa-envelope input-prefix"></i>
+					</div>
+					
+					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
+  					<input type="text" id="endTime" class="form-control" placeholder="Elegir hora final">
+  					<label for="twelve-hour-clock">Hora Final</label>
+ 					 <i class="fas fa-envelope input-prefix"></i>
+					</div>
+					
+					<div class="form-group">
+								<label for="semester">Semestre</label> <select id="semester"
+									name="semester">
+									<option value="201601">201601</option>
+									<option value="201602">201602</option>
+									<option value="201701">201701</option>
+									<option value="201702">201702</option>
+									<option value="201801">201801</option>
+									<option value="201802">201802</option>
+									<option value="201901">201901</option>
+									<option value="201902">201902</option>
+									<option value="202001">202001</option>
+		
+								</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="amount">Vacantes</label> <input type="text"
+							class="form-control" id="amount" aria-describedby="amount"
+							th:field="*{amount}" placeholder="type here ..." />
+					</div>
+				
+					<a th:href="@{/courses/list}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Confirmar</button>
+				</form>
+				</div>
+			</div>
+		</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

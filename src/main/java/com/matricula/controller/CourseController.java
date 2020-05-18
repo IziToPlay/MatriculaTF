@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -115,29 +114,20 @@ public class CourseController {
 	
 	@GetMapping("/delete/{id}")
 	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {
-		Course course = courseService.findById(id);
-		courseService.deleteCourse(id);
+		courseService.deleteCourse(courseService.findById(id).getId());
 		model.addAttribute("success", "Ticket eliminado correctamente");
 		return "redirect:/tickets/list";
 	}
 	
-	public void getAllCareers() {
-		careers.add(0, "Ingenieria de Sistemas");
-		careers.add(1, "Ingenieria de Software");
-		careers.add(2, "Ingenieria Industrial");
-		careers.add(3, "Economia");
-		careers.add(4, "Administracion");
-		careers.add(5, "Ingenieria Civil");
-	}
-	
 	public void getAllSemesters() {
-		semesters.add(0, 201702);
-		semesters.add(1, 201801);
-		semesters.add(2, 201802);
-		semesters.add(3, 201901);
-		semesters.add(4, 201902);
-		semesters.add(5, 202001);
+		semesters.add(0, 201601);
+		semesters.add(1, 201602);
+		semesters.add(2, 201701);
+		semesters.add(3, 201702);
+		semesters.add(4, 201801);
+		semesters.add(5, 201802);
+		semesters.add(6, 201901);
+		semesters.add(7, 201902);
+		semesters.add(8, 202001);
 	}
-
-
 }
