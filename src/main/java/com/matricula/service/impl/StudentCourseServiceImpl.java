@@ -47,7 +47,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	public void deleteStudentCourse(Long studentCourseId) {
 		studentCourseRepository.deleteById(studentCourseId);
 	}
-
+	
 	@Override
 	public StudentCourse findById(Long id) {
 		return studentCourseRepository.fetchById(id);
