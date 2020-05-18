@@ -14,6 +14,10 @@ public interface StudentCourseService {
 	
 	void deleteStudentCourse(Long studentCourseId);
 	
+	List<StudentCourse> validateCoursesStudentRegistered(Long idCourse);
+	
+	//void deleteCourseStudentRegistered(Long idCourse);
+	
 	StudentCourse findById(Long id);
 	
 	StudentCourse findByName(String name);

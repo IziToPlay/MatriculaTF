@@ -78,30 +78,30 @@ public class StudentController {
 		return "students/new";
 	}
 	
-	@PostMapping("/save")
-	public String createStudentForm(Student student, Model model) throws Exception {
-		long id;
+	@PostMapping("/save/{id}")
+	public String createStudentForm(@PathVariable("id") Long id, Model model) throws Exception {
 		numerator++;
 		student.setAccount(userService.findById(numerator));
-		id=studentService.createStudent(student).getId();
+		id=studentService.createStudent(studentService.findById(id)).getId();
 
 		return "students/list";
 	}
 	
 	@GetMapping("/edit/{id}")
-    public String editStudentForm(@PathVariable("id") long id, Model model) throws Exception {
+    public String editStudentForm(@PathVariable("id") Long id, Model model) throws Exception {
         Student student = studentService.findById(id);
         model.addAttribute("student", student);
         return "students/edit";
     }
 	
 	@PostMapping("/update/{id}")
-    public String updateStudent(@PathVariable("id") long id, Student student) throws Exception {
+    public String updateStudent(@PathVariable("id") Long id, Student student) throws Exception {
         studentService.updateStudent(id, student);
         return "students/new";    
     }
+	
 	@GetMapping("/delete/{id}")
-	public String deleteStudent(@PathVariable("id") long id, Model model) throws Exception {
+	public String deleteStudent(@PathVariable("id") Long id, Model model) throws Exception {
 		Student student = studentService.findById(id);
 		studentService.deleteStudent(id);
 		model.addAttribute("success", "Estudiante eliminado correctamente");
