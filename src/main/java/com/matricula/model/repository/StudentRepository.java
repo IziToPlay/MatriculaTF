@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.matricula.model.entity.Account;
+import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Student;
 
 
@@ -30,4 +32,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 	@Query("SELECT s FROM Student s WHERE s.id like %?1%")
 	List<Student> finById(Long id);
+	
+	 @Query("SELECT s FROM Student s WHERE s.account.user_id=:a.user_id")
+	 Student findStudentByAccount(@Param("a") Account a);
 }

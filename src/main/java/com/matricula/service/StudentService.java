@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 
 public interface StudentService {
@@ -23,7 +24,7 @@ public interface StudentService {
 	Student getLatestEntry();
 	
     List<Student> findAll();
-
+ /*Encontrar cuenta de estudiante*/Student findStudentByAccount(Account account);
     List<Student> finById(Long Id);
 	/*
 	Incident getLatestEntry();
