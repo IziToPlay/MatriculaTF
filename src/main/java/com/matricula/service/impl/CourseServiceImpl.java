@@ -84,7 +84,9 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> findCoursesAvailables() {
 		return null;
+		
 		//Account account=accountServiceImpl.getLoggedUser();
-		//return courseRepository.findCoursesAvailables(studentServiceImpl.findStudentByAccount(account.getId()));
+		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
+		//return courseRepository.findCoursesAvailables(student.career,student.semester);
 	}
 }

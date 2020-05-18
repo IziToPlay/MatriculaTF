@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matricula.model.entity.Student;
 import com.matricula.model.entity.StudentCourse;
 import com.matricula.model.repository.StudentCourseRepository;
 import com.matricula.service.StudentCourseService;
@@ -20,10 +21,13 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Override
 	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id) {
 		
-		return studentCourseRepository.fetchStudentCourseBySemester(semester, id);		
+		//Account account=accountServiceImpl.getLoggedUser();
+		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
+		Student student = null;
+		return studentCourseRepository.fetchStudentCourseBySemester(semester, student.getId());		
 	}
 	
-
+	
 	@Override
 	public StudentCourse createStudentCourse(StudentCourse studentCourse) {
 		StudentCourse newStudentCourse;
