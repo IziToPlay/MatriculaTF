@@ -55,16 +55,17 @@ public class StudentCourseController {
 	@GetMapping
 	public String showActualRegisteredCourses(Model model) throws Exception {
 		try {
+			
 		//Long id=userServiceImpl.getLoggedUser().getId();
 		Long id=null;
 		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
-		return "courseStudent/list";
+		return "studentCourses/listCoursesActualSemester";
 	}
 	
-	@GetMapping("/semesterSearched")
+/*	@GetMapping("/semesterSearched")
 	public String showSemesterSearchedCourses(Model model) throws Exception {
 		try {
 		//Long id=userServiceImpl.getLoggedUser().getId();
@@ -73,8 +74,8 @@ public class StudentCourseController {
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
-		return "courseStudent/list";
-	}
+		return "studentCourses/list";
+	}*/
 
 	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
 	@PostMapping("/save/{id}")
@@ -82,7 +83,7 @@ public class StudentCourseController {
 
 		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
-				return "redirect:/courses";
+				return "redirect:/studentCourses";
 			} else {
 			StudentCourse studentCourse = new StudentCourse();
 			studentCourse.setCourse(course);
@@ -91,12 +92,12 @@ public class StudentCourseController {
 			course.setAmount(course.getAmount()-1);
 			studentCourseService.createStudentCourse(studentCourse);
 			//Student_Course newStudentCourse = studentCourseService.createStudentCourse(studentCourse);
-			return "redirect:/courses"; //+ newStudent.getId();//verificar despues
+			return "redirect:/studentCourses"; //+ newStudent.getId();//verificar despues
 			}
 		}
 	
-	@GetMapping("/searchStudentCourse")
-	public List<StudentCourse> searchStudentCourseBySemester(Integer semester, Model model) {
+	@GetMapping("/searchSemester")
+	public String searchStudentCourseBySemester(Integer semester, Model model) {
 		try {
 			if (semester!=null) {
 				//Long id=userServiceImpl.getLoggedUser().getId();
@@ -105,21 +106,22 @@ public class StudentCourseController {
 				if (!studentCourses.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("studentCourses", studentCourses);
-					searchedSemester=semester;
+					//searchedSemester=semester;
+					return "studentCourses/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
 					Long idd=null;
-					model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, idd));
+					return "redirect:/studentCourses";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
 				Long id=null;
-				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+				return "redirect:/studentCourses";
 			}
 		} catch (Exception e) {
 			model.addAttribute("Error Student Course:", e.getMessage());
+			return "redirect:/studentCourses";
 		}
-		return studentCourses;
 	}
 
 	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso
@@ -128,8 +130,6 @@ public class StudentCourseController {
 		Course course=courseService.findById(courseToDeleteId);
 		course.setAmount(course.getAmount()+1);
 		studentCourseService.deleteStudentCourse(courseToDeleteId);
-		return "redirect:/studentCourses/semesterSearched";
-	}
-
-	
+		return "redirect:/studentCourses";
+	}	
 }
