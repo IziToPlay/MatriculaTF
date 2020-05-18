@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Cruz Solar</a>
+  <a class="navbar-brand" href="#">Academia Freud</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -7,8 +7,7 @@
     data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent"
     aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -19,31 +18,53 @@
           >Inicio
           <span class="sr-only">(current)</span>
         </a>
+        
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors}" >Gestionar Profesores</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/trips/list}">Mis cursos</a>
+      
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses}" >Gestionar Cursos</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/tickets/list}">Visualizar cursos disponibles</a>
+      
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students}">Gestionar Alumnos</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" th:href="@{/tickets/listBoughtTickets}">Gestionar profesores</a>
+        
+     
+      <li sec:authorize="hasRole('ROLE_USER') "  class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" 
+        href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()" >
+          Matrícula
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" th:href="@{/courses/listCoursesAvailables}">Visualizar Cursos Disponibles</a>
+          
+        </div>
+      </li>	
+      
+      <li sec:authorize="hasRole('ROLE_USER') "  class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" 
+        href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()" >
+          Información Académica
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" th:href="@{/studentCourses}">Cursos por Semestre</a>
+          
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/coupons/list}">Gestionar cursos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/coupons/list}">Gestionar alumnos</a>
-      </li>
+      
+      
       <li class="nav-item"><a th:href="@{/logout}"
-					class="nav-link" sec:authorize="isAuthenticated()"> Sign Out</a>				
+					class="nav-link" sec:authorize="isAuthenticated()"> Cerrar Sesión</a>				
 	   </li>
     </ul>
   </div>
+  
   <div class="alert alert-success" th:if="${success != null}"
 			th:text="${success}"></div>
-		<div class="alert alert-danger" th:if="${error != null}"
+  <div class="alert alert-danger" th:if="${error != null}"
 			th:text="${error}"></div>
-		<div class="alert alert-info" th:if="${info != null}"
+  <div class="alert alert-info" th:if="${info != null}"
 			th:text="${info}"></div>
 </nav>
