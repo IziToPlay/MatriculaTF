@@ -21,16 +21,19 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/trips/list}">Viajes Disponibles</a>
+        <a class="nav-link" th:href="@{/trips/list}">Mis cursos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/tickets/list}">Mis reservas</a>
+        <a class="nav-link" th:href="@{/tickets/list}">Visualizar cursos disponibles</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" th:href="@{/tickets/listBoughtTickets}">Mis compras</a>
+        <a class="nav-link" th:href="@{/tickets/listBoughtTickets}">Gestionar profesores</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/coupons/list}">Cupones</a>
+        <a class="nav-link" th:href="@{/coupons/list}">Gestionar cursos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/coupons/list}">Gestionar alumnos</a>
       </li>
       <li class="nav-item"><a th:href="@{/logout}"
 					class="nav-link" sec:authorize="isAuthenticated()"> Sign Out</a>				
