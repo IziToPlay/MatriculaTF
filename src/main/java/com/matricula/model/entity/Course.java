@@ -34,9 +34,10 @@ public class Course {
 	@NotEmpty(message="Ingrese cantidad de alumnos")
 	private Integer amount;
 	
-	@JoinColumn(name="professor_id")
+	
 	@NotEmpty(message="Ingrese profesor")
 	@ManyToOne
+	@JoinColumn(name="professor_id")
 	private Professor professor;
 	
 	@Column(name = "semester")
