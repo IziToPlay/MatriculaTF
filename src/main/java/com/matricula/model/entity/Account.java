@@ -37,10 +37,10 @@ public class Account {
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
 	
-	
-	/*@ManyToOne
-	@JoinColumn(name = "employee_id",nullable=false)
-	private Employee employee;*/
+	/*
+	@ManyToOne
+	@JoinColumn(name = "student_id",nullable=false)
+	private Student student;*/
 	
 
 	public Long getId() {
