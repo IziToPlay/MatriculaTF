@@ -23,6 +23,7 @@ public class StudentController {
 	private Student student; 
 	private List<Student> students; 
 	
+	@GetMapping("/list")
 	public String showAllStudents(Model model) throws Exception{
 		
 		try {

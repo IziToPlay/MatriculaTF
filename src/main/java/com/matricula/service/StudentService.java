@@ -11,11 +11,17 @@ import com.matricula.model.entity.Student;
 public interface StudentService {
 
 	List<Student> getAllStudent();
+	
 	Student createStudent(Student student);
+	
 	Student updateStudent(Long id, Student student);
+	
 	void deleteStudent(Long incidentId);
+	
 	Student findById(Long id);
+	
 	Student getLatestEntry();
+	
     List<Student> findAll();
 
     List<Student> finById(Long Id);

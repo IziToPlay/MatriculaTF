@@ -1,15 +1,17 @@
 package com.matricula.service.impl;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.matricula.model.entity.StudentCourse;
 import com.matricula.model.repository.StudentCourseRepository;
 import com.matricula.service.StudentCourseService;
 
+@Service
 public class StudentCourseServiceImpl implements StudentCourseService {
 
 	@Autowired
@@ -17,6 +19,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	
 	@Override
 	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id) {
+		
 		return studentCourseRepository.fetchStudentCourseBySemester(semester, id);		
 	}
 	
@@ -33,7 +36,6 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		// TODO Auto-generated method stub
 		
 		StudentCourse newStudentCourse = findById(id);
-		
 		newStudentCourse.setCourse(studentCourse.getCourse());
 		newStudentCourse.setEnrollment(studentCourse.getEnrollment());
 		newStudentCourse.setStudent(studentCourse.getStudent());

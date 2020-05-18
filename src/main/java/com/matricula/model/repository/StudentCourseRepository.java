@@ -14,12 +14,11 @@ import com.matricula.model.entity.StudentCourse;
 public interface StudentCourseRepository extends JpaRepository<StudentCourse, Long> {
 	
 	
-	@Query("select sc from StudentCourse sc where sc.enrollment.semester=?1 AND sc.student.id=student.id")
+	@Query("select sc from StudentCourse sc where sc.enrollment.semester=?1 AND sc.student.id=:student.id")
 	List<StudentCourse> fetchStudentCourseBySemester(Integer semester,@Param ("student")Student student);
 
 	@Query("select sc from StudentCourse sc where sc.enrollment.semester =?1 and sc.student.id =?2")
 	List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id);
 
-	
 		
 }

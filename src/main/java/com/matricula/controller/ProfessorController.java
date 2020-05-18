@@ -5,11 +5,13 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,35 +19,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.matricula.model.entity.Professor;
 import com.matricula.service.ProfessorService;
 
+@Controller
+@RequestMapping("/professors")
 public class ProfessorController {
-	protected static final String PROFESSOR_VIEW = "professors/showProfessor"; // view template for single article
-	protected static final String PROFESSOR_ADD_FORM_VIEW = "professors/newProfessor"; // form for new article
-	protected static final String PROFESSOR_EDIT_FORM_VIEW = "professors/editProfessor"; // form for editing an article
-	protected static final String PROFESSOR_PAGE_VIEW = "professors/allProfessors"; // list with pagination
-	
-	protected static final String PROFESSOR_QUERYS= "professors/querysProfessors"; // list with pagination
-
-	
-	protected static final String INDEX_VIEW = "index"; // articles with pagination
-	
 	
 	@Autowired
 	private ProfessorService professorService;
 	
-	@GetMapping("/{id}")
-	public String getProfessorById(@PathVariable(value = "id") Long professorId, Model model) {
-		model.addAttribute("professor", professorService.findById(professorId));
-		return PROFESSOR_VIEW;
+	@GetMapping("/list")
+	public String showAllProfessors(Model model) throws Exception {
+		try {
+		model.addAttribute("professors", professorService.getAllProfessors());
+		} catch(Exception e) {
+		model.addAttribute("error",e.getMessage());
+	}
+		return "courses/list";
 	}
 
-	/*as*/
-	/*@GetMapping
-	public ModelAndView getAllProfessors(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitPaginationProfessor.initPagination(pageSize, page, PROFESSOR_PAGE_VIEW);
-		return modelAndView;
-	}*/
-	
 	@GetMapping("/new")
 	public String newProfessor(Model model) {
 

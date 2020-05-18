@@ -48,12 +48,8 @@ public class ProfessorServiceImpl implements ProfessorService  {
 
 	@Override
 	public Professor findById(Long id) {
-	Optional<Professor> professor=professorRepository.findById(id);
-		
-		if(!professor.isPresent()) {
-			/*throw new ResourceNotFoundException("There is no Professor with ID = " + id);*/
-		}
-		return professor.get();
+	Professor professor=professorRepository.fetchById(id);
+		return professor;
 	}
 
 	@Override

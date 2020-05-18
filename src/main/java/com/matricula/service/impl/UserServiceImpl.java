@@ -23,4 +23,21 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByUserName(userName);
 	}
 
+	/*@Override
+	public Account getLoggedUser() {
+		//Obtener el usuario logeado
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        
+		UserDetails loggedUser = null;
+
+		//Verificar que ese objeto traido de sesion es el usuario
+		if (principal instanceof UserDetails) {
+			loggedUser = (UserDetails) principal;
+		}
+		
+		Account myUser = userRepository.findByUserName(loggedUser.getUsername());
+		
+		return myUser;
+	}*/
+
 }
