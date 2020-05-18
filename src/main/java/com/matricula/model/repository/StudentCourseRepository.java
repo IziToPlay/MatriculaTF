@@ -12,7 +12,7 @@ import com.matricula.model.entity.StudentCourse;
 public interface StudentCourseRepository extends JpaRepository<StudentCourse, Long> {
 	
 	
-	@Query("select sc from StudentCourse sc where sc.enrollment.semester like %?1%")
-	List<StudentCourse> fetchStudentCourseBySemester(Integer semester);
+	@Query("select sc from StudentCourse sc where sc.enrollment.semester =?1 and sc.student.id =?2")
+	List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id);
 	
 }
