@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.StudentService;
@@ -99,6 +100,13 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.finById(id);
 	}
 
+	public Student findStudentByAccount(Account account)
+	{
+		Student estudiante;
+		estudiante=studentRepository.findStudentByAccount(account);
+		return estudiante;
+	}
+	
 	/**@Override
 	public List<Student> getAllStudent() {
 		// TODO Auto-generated method stub
