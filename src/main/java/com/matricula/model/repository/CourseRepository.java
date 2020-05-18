@@ -23,7 +23,9 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     //Query para el Alumno para ver sus cursos a matricularse
     @Query("SELECT c FROM Course c WHERE c.career=:s.career AND c.semester=:s.semester AND c.amount>0")
     List<Course> findCoursesAvailables(@Param("s") Student student);
-        
+    
+    @Query("SELECT c FROM Course c WHERE c.id=?1")
+    Course fetchById(Long courseId);
     //FindById esta incorporado en el Crud de List
     
   //Query para el Admin
