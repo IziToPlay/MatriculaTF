@@ -30,28 +30,28 @@ public class StudentController {
 			} catch(Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-			return "courses/list";
+			return "students/list";
 		
 	}
 	
 	@GetMapping("/searchStudent")
-	public List<Student> searchCourseById(Long id, Model model) {
+	public List<Student> searchStudentById(Long id, Model model) {
 		try {
 			if (id!=null) {
 				students = studentService.finById(id);
 				if (!students.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
-					model.addAttribute("courses", students);
+					model.addAttribute("studentss", students);
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("courses", studentService.getAllStudent());
+					model.addAttribute("students", studentService.getAllStudent());
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de búsqueda.");
-				model.addAttribute("courses", studentService.getAllStudent());
+				model.addAttribute("students", studentService.getAllStudent());
 			}
 		} catch (Exception e) {
-			model.addAttribute("Error Course:", e.getMessage());
+			model.addAttribute("Error student:", e.getMessage());
 		}
 		return students;
 	}
@@ -60,7 +60,7 @@ public class StudentController {
 	public String newStudent(Model model){
 		
 		model.addAttribute("student", new Student());
-		return "courses/new";
+		return "students/new";
 	}
 	
 	@PostMapping("/save")
