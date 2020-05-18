@@ -20,5 +20,6 @@ public interface StudentCourseRepository extends JpaRepository<StudentCourse, Lo
 	@Query("select sc from StudentCourse sc where sc.enrollment.semester =?1 and sc.student.id =?2")
 	List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id);
 
-		
+	@Query("SELECT sc FROM StudentCourse sc WHERE sc.id=?1")
+	StudentCourse fetchById(Long scId);
 }

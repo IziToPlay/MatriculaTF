@@ -42,7 +42,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		studentCourseRepository.save(newStudentCourse);
 		return null;
 	}
-
+	
 	@Override
 	public void deleteStudentCourse(Long studentCourseId) {
 		studentCourseRepository.deleteById(studentCourseId);
@@ -50,7 +50,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 
 	@Override
 	public StudentCourse findById(Long id) {
-		return null;
+		return studentCourseRepository.fetchById(id);
 		
 	}
 
