@@ -95,7 +95,7 @@ public class ProfessorController {
 	public String deleteProfessor(@PathVariable("id") Long id, Model model) throws Exception {
 		professorService.deleteProfessor(professorService.findById(id).getId());
 		model.addAttribute("success", "Profesor eliminado correctamente");
-		return "/professors/list";
+		return "redirect:/professors";
 	}
 
 	public ProfessorService getProfessorService() {

@@ -49,7 +49,7 @@ public class ProfessorServiceImpl implements ProfessorService  {
 	@Override
 	public Professor findById(Long id) {
 	Professor professor=professorRepository.fetchById(id);
-		return professor;
+	return professor;
 	}
 	
 	@Override
@@ -67,6 +67,14 @@ public class ProfessorServiceImpl implements ProfessorService  {
 			Long latestProfessorID = professorRepository.findTopByOrderByIdDesc();
 			return findById(latestProfessorID);
 		}
+	}
+
+	public ProfessorRepository getProfessorRepository() {
+		return professorRepository;
+	}
+
+	public void setProfessorRepository(ProfessorRepository professorRepository) {
+		this.professorRepository = professorRepository;
 	}
 
 	/*@Override

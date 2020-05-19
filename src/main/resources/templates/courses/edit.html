@@ -17,12 +17,12 @@
 					<div class="form-group">
 						<label for="nameCourse">Nombre</label> <input type="text"
 							class="form-control" id="nameCourse" aria-describedby="nameCourse"
-							th:field="*{course.name}"/>
+							th:field="*{name}"/>
 					</div>
 									
 					<div class="form-group">
 								<label for="career">Carrera</label> 
-								<select id="career" name="career" th:field="*{course.career}">
+								<select id="career" name="career" th:field="*{career}">
 									<option value="Ingenieria de Sistemas">Ingenieria de Sistemas</option>
 									<option value="Ingenieria de Software">Ingenieria de Software</option>
 									<option value="Ingenieria Industrial">Ingenieria Industrial</option>
@@ -34,15 +34,15 @@
 					
 					<div class="form-group">
 						<label for="professor">Profesor</label> <select id="professor"
-							class="form-control" th:field="*{course.professor}">
+							class="form-control" th:field="*{professor}">
 							<option th:each="professor : ${professors}"
-								th:text="${professor.name + professor.lastName}" th:value="${professor.id}"></option>
+								th:text="${professor.name+ ' ' + professor.lastName}" th:value="${professor.id}"></option>
 						</select>
 					</div>
 					
 					<div class="form-group">
 								<label for="day">Dia</label> <select id="day"
-									name="day" th:field="*{course.day}">
+									name="day" th:field="*{day}">
 									<option value="Lunes">Lunes</option>
 									<option value="Martes">Martes</option>
 									<option value="Miercoles">Miercoles</option>
@@ -54,21 +54,21 @@
 								</select>
 					</div>
 					
+					<label for="twelve-hour-clock">Hora Inicial</label>
 					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="startTime" class="form-control" th:field="{course.startTime}" placeholder="Elegir hora inicial">
-  					<label for="twelve-hour-clock">Hora Inicial</label>
+  					<input type="text" id="startTime" class="form-control" th:field="*{startTime}" placeholder="Elegir hora inicial">
  					 <i class="fas fa-envelope input-prefix"></i>
 					</div>
 					
+					<label for="twelve-hour-clock">Hora Final</label>
 					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="endTime" class="form-control" th:field="{course.endTime}" placeholder="Elegir hora final">
-  					<label for="twelve-hour-clock">Hora Final</label>
- 					 <i class="fas fa-envelope input-prefix"></i>
+  					<input type="text" id="endTime" class="form-control" th:field="*{endTime}" placeholder="Elegir hora final">
+   					 <i class="fas fa-envelope input-prefix"></i>
 					</div>
 					
 					<div class="form-group">
 								<label for="semester">Semestre</label> <select id="semester"
-									name="semester" th:field="*{course.semester}">
+									name="semester" th:field="*{semester}">
 									<option value="201601">201601</option>
 									<option value="201602">201602</option>
 									<option value="201701">201701</option>
@@ -83,13 +83,25 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="amount">Vacantes</label> <input type="text"
-							class="form-control" id="amount" aria-describedby="amount"
-							th:field="*{course.amount}" placeholder="type here ..." />
+								<label for="amount">Vacantes</label> <select id="amount"
+									name="amount" th:field="*{amount}">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+		
+								</select>
 					</div>
 					
-					<a th:href="@{/tickets/list/}" class="btn btn-primary">Regresar</a>
-					<button type="submit" class="btn btn-success">Save</button>
+					<button type="submit" class="btn btn-success">Confirmar</button>
+					<a th:href="@{/courses/list/}" class="btn btn-primary">Regresar</a>
+					
 				</form>
 			</div>
 		</div>

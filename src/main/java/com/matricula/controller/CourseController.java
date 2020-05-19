@@ -103,13 +103,14 @@ public class CourseController {
     public String editCourseForm(@PathVariable("id") long id, Model model) throws Exception {
         Course course = courseService.findById(id);
         model.addAttribute("course", course);
+        model.addAttribute("professors", professorService.getAllProfessors());
         return "courses/edit";
     }
 	
 	@PostMapping("/update/{id}")
     public String updateCourse(@PathVariable("id") long id, Course course) throws Exception {
         courseService.updateCourse(id, course);
-        return "courses/new";    
+        return "redirect:/courses/list";    
     }
 	
 	@GetMapping("/delete/{id}")

@@ -19,7 +19,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	/**
      * @return newest articleId
      */
-	@Query(value = "SELECT MAX(id) FROM Student")
+	@Query("SELECT MAX(id) FROM Student")
     Long findTopByOrderByIdDesc();
 	
 	

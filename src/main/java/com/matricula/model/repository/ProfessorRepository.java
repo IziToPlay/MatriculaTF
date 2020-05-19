@@ -16,12 +16,12 @@ import com.matricula.model.entity.Professor;
 @Repository
 public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
 
-    @Query(value = "SELECT MAX(id) FROM Professor")
+    @Query("SELECT MAX(id) FROM Professor")
     Long findTopByOrderByIdDesc();
 
-    @Query(value="SELECT p FROM Professor p WHERE p.id=?1")
+    @Query("SELECT p FROM Professor p WHERE p.id=?1")
     Professor fetchById(Long id);
     
-    @Query(value="SELECT p FROM Professor p WHERE p.id=?1")
+    @Query("SELECT p FROM Professor p WHERE p.id=?1")
     List<Professor> fetchhById(Long id);
 }

@@ -17,12 +17,16 @@
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
 						
-					
+					<div class="form-group">
+						<label for="name">Nombres</label> <input type="text"
+							class="form-control" id="name" aria-describedby="name"
+							th:field="*{name}"/>
+					</div>
 									
 					<div class="form-group">
 						<label for="lastName">Apellidos</label> <input type="text"
 							class="form-control" id="lastName" aria-describedby="lastName"
-							th:field="*{professor.lastName}"/>
+							th:field="*{lastName}"/>
 					</div>
 					
 					<a th:href="@{/professors/list/}" class="btn btn-primary">Regresar</a>

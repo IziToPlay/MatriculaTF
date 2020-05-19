@@ -17,15 +17,15 @@
 							<h6>__________________________________________________________________</h6>
 						</div>
 
-									<form action="/courses/searchCourse" method="GET">
+									<form action="@{/courses/searchCourse}" method="GET">
 								<div class="form-row align-items-center">
-									<label for="course">Curso a Buscar</label> 
-									<select id="course" th:field="*{courses}">
+									<label for="name">Curso a Buscar </label> 
+									<select id="name" th:field="*{courses}">
 									<option th:each="course : ${courses}" th:text="${course.name}" th:value="${course.name}"></option>
 									</select>						
 														
 								<div class="col-auto">
-									<button type="submit" onclick="getData()" class="btn btn-primary">Buscar</button>
+									<button type="submit" class="btn btn-primary">Buscar</button>
 								</div>
 								</div>
 							</form>			
@@ -50,7 +50,7 @@
 
 							<td th:text="${course.id}">MatriculaTF</td>
 							<td th:text="${course.name}">MatriculaTF</td>
-							<td th:text="${course.professor.name + course.professor.lastName}">MatriculaTF</td>
+							<td th:text="${course.professor.name +' '+ course.professor.lastName}">MatriculaTF</td>
 							<td th:text="${course.day}">MatriculaTF</td>
 							<td th:text="${course.startTime}">MatriculaTF</td>
 							<td th:text="${course.endTime}">MatriculaTF</td>

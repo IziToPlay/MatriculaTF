@@ -13,7 +13,7 @@ import com.matricula.model.entity.Student;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long>{
 	
-    @Query(value = "SELECT MAX(id) FROM Course")
+    @Query("SELECT MAX(id) FROM Course")
     Long findTopByOrderByIdDesc();
   
     //Query para el Admin

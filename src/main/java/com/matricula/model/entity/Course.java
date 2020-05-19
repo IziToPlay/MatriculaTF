@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "courses")
@@ -31,17 +32,17 @@ public class Course {
 	private String name;
 	
 	@Column(name = "amount")
-	@NotEmpty(message="Ingrese cantidad de alumnos")
+	@NotNull(message="Ingrese cantidad de alumnos")
 	private Integer amount;
 	
 	
-	@NotEmpty(message="Ingrese profesor")
+	//@NotEmpty(message="Ingrese profesor")
 	@ManyToOne
 	@JoinColumn(name="professor_id")
 	private Professor professor;
 	
 	@Column(name = "semester")
-	@NotEmpty(message="Ingrese ciclo del curso")
+	@NotNull(message="Ingrese ciclo del curso")
 	private Integer semester;
 	
 	@Column(name = "career")
