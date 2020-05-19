@@ -12,23 +12,26 @@
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Cursos </h2>
+							<h2> Gestionar Cursos </h2>
 							<a href="/courses/new" class="btn btn-primary"> Nuevo Curso </a>
 							<h6>__________________________________________________________________</h6>
 						</div>
 
-									<form action="@{/courses/searchCourse}" method="GET">
+							<form action="/courses/search" method="GET">
 								<div class="form-row align-items-center">
-									<label for="name">Curso a Buscar </label> 
-									<select id="name" th:field="*{courses}">
-									<option th:each="course : ${courses}" th:text="${course.name}" th:value="${course.name}"></option>
+								<div class="col-auto">
+									<label class="sr-only" for="filterName">Curso a Buscar </label> 
+									<select id="filterName" name="filterName">
+									<option th:each="course : ${coursesToSearch}" th:text="${course.name}" th:value="${course.name}"></option>
 									</select>						
-														
+								</div>				
 								<div class="col-auto">
 									<button type="submit" class="btn btn-primary">Buscar</button>
 								</div>
 								</div>
-							</form>			
+							</form>	
+							
+							<h2> </h2>			
 
 	<div class ="table-responsive">
 				<table class="table table-striped">

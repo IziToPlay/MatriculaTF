@@ -39,16 +39,19 @@ public class CourseController {
 	private List<String> careers;
 	private List<Integer> semesters;
 	
+	//FOR ADMIN
 	@GetMapping("/list")
 	public String showAllCourses(Model model) throws Exception {
 		try {
 		model.addAttribute("courses", courseService.getAllCourses());
+		model.addAttribute("coursesToSearch", courseService.getAllCourses());
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
 		return "courses/list";
 	}
 	
+	//FOR STUDENT
 	@GetMapping("/listCoursesAvailables")
 	public String showAllCoursesAvailables(Model model) throws Exception {
 		try {
@@ -59,27 +62,26 @@ public class CourseController {
 		return "courses/listCoursesAvailables";
 	}
 	
-	@GetMapping("/searchCourse")
-	public String searchCourseByName(@RequestParam("name") String name, Model model) throws Exception {
-		try {
-			if (!name.isEmpty()) {
-				List<Course> courses = courseService.findByName(name);
+	@GetMapping("/search")
+	public String searchCourseByName(@RequestParam("filterName") String filterName, Model model) throws Exception {
+			
+			if (!filterName.isEmpty()) {
+				List<Course> courses = courseService.findByName(filterName);
 				if (!courses.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("courses", courses);
+					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					return "redirect:/courses/list";
+					model.addAttribute("coursesToSearch", courseService.getAllCourses());
+					return "courses/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de búsqueda.");
-				return "redirect:/courses/list";
+				model.addAttribute("coursesToSearch", courseService.getAllCourses());
+				return "courses/list";
 			}
-		} catch (Exception e) {
-			model.addAttribute("Error Course:", e.getMessage());
-			return "redirect:/courses";
-		}
 		//return courses;
 	}
 	
@@ -96,7 +98,7 @@ public class CourseController {
 	
 	@PostMapping("/save")
 	public String saveNewCourse(Course course, Model model) throws Exception {
-		long id=courseService.createCourse(course).getId();
+		courseService.createCourse(course).getId();
 		return "courses/list";
 	}
 	

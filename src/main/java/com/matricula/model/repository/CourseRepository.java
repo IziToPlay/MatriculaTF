@@ -17,12 +17,15 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     Long findTopByOrderByIdDesc();
   
     //Query para el Admin
-    @Query("SELECT c FROM Course c WHERE c.name=:name")
-    List<Course> findByName(@Param("name") String name);
+    @Query("SELECT c FROM Course c WHERE c.name like %?1%")
+    List<Course> findByName(String name);
 
     //Query para el Alumno para ver sus cursos a matricularse
     @Query("SELECT c FROM Course c WHERE c.career like %?1% AND c.semester like %?2% AND c.amount>0")
     List<Course> findCoursesAvailables(String career, String semester);
+    
+    @Query("SELECT c FROM Course c")
+    List<Course> findAllCourses();
     
     @Query("SELECT c FROM Course c WHERE c.id=?1")
     Course fetchById(Long courseId);

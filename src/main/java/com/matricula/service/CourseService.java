@@ -11,6 +11,8 @@ import com.matricula.model.entity.Course;
 public interface CourseService {
 
 	List<Course> getAllCourses();
+		
+	//List<String> getAllCoursesToSearch();
 	
 	Course createCourse(Course course);
 	
@@ -27,7 +29,7 @@ public interface CourseService {
 	List<Course> findByName(String name);
     
     List<Course> findCoursesAvailables();
-      
+          
     //Page<Course> findCoursesAvailables(Pageable pageable);
 
 }
