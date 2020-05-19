@@ -8,27 +8,29 @@
 
 		<div class="card" style="max-width: 100%;">
 
-			<div class="card-header">Gestionar Profesores</div>
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Profesores </h2>
+							<h2> Gestionar Profesores </h2>
 							<a href="/professors/new" class="btn btn-primary"> Nuevo Profesor </a>
 							<h6>__________________________________________________________________</h6>
 						</div>
 
-									<form action="@{/professors/search}" method="GET">
+							<form action="/professors/search" method="GET">
 								<div class="form-row align-items-center">
 								<div class="col-auto">
-									<label class="sr-only" for="id">Profesor a Buscar</label>
-									<input id="id" type="text" class="form control" name="id">
+									<label class="sr-only" for="filterId">Buscar Profesor</label>
+									<input id="filterId" type="text" class="form control" name="filterId"
+									placeholder="Buscar por codigo">
 								</div>
 								
 								<div class="col-auto">
 									<button type="submit" class="btn btn-primary">Buscar</button>
 								</div>
 								</div>
-							</form>			
+							</form>	
+							
+							<h2> </h2>	
 
 	<div class ="table-responsive">
 				<table class="table table-striped">

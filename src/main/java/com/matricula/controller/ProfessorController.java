@@ -45,29 +45,29 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/search")
-	public String searchProfessorById(@RequestParam("id") String id, Model model) throws Exception {
-		try {
-			if (!id.isEmpty()) {
-			long idd = Long.parseLong(id);
-				professors=professorService.finddById(idd);
+	public String searchProfessorById(@RequestParam("filterId") String filterId, Model model) throws Exception {
+
+			if (!filterId.isEmpty()) {
+				
+				Long id = Long.parseLong(filterId);
+				professors=professorService.finddById(id);
 				if (!professors.isEmpty()) {
-					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("professors", professors);
+					model.addAttribute("success", "Busqueda realizada correctamente");
 					return "professors/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					return "redirect:/professors/list";
+					model.addAttribute("professors", professors);
+					return "professors/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				return "redirect:/professors/list";
+				model.addAttribute("professors", professors);
+				return "professors/list";
 			}
-		} catch (Exception e) {
-			model.addAttribute("Error Professor:", e.getMessage());
-			return "redirect:/professors/list";
-		}
-		//return professors;
-	}
+			//return professors;
+		} 
+		
 
 	@GetMapping("/new")
 	public String newProfessor(Model model) throws Exception{
