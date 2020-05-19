@@ -36,7 +36,6 @@ public class CourseController {
 	
 	private Course course;
 	private Professor professor;
-	private List<Course> courses;
 	private List<String> careers;
 	private List<Integer> semesters;
 	
@@ -61,25 +60,27 @@ public class CourseController {
 	}
 	
 	@GetMapping("/searchCourse")
-	public List<Course> searchCourseByName(String name, Model model) {
+	public String searchCourseByName(@RequestParam("name") String name, Model model) throws Exception {
 		try {
 			if (!name.isEmpty()) {
-				courses = courseService.findByName(name);
+				List<Course> courses = courseService.findByName(name);
 				if (!courses.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("courses", courses);
+					return "courses/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("courses", courseService.getAllCourses());
+					return "redirect:/courses/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de búsqueda.");
-				model.addAttribute("courses", courseService.getAllCourses());
+				return "redirect:/courses/list";
 			}
 		} catch (Exception e) {
 			model.addAttribute("Error Course:", e.getMessage());
+			return "redirect:/courses";
 		}
-		return courses;
+		//return courses;
 	}
 	
 	@GetMapping("/new")

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,8 @@ public class ProfessorController {
 	
 	private List<Professor> professors;
 	
+	private Professor professorToEdit;
+	
 	@GetMapping("/list")
 	public String showAllProfessors(Model model) throws Exception {
 		try {
@@ -42,60 +45,92 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/search")
-	public List<Professor> searchProfessorById(Long id, Model model) {
+	public String searchProfessorById(@RequestParam("id") String id, Model model) throws Exception {
 		try {
-			if (id!=null) {
-				professors=professorService.finddById(id);
+			if (!id.isEmpty()) {
+			long idd = Long.parseLong(id);
+				professors=professorService.finddById(idd);
 				if (!professors.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("professors", professors);
+					return "professors/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("professors", professorService.getAllProfessors());
+					return "redirect:/professors/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("professors", professorService.getAllProfessors());
+				return "redirect:/professors/list";
 			}
 		} catch (Exception e) {
 			model.addAttribute("Error Professor:", e.getMessage());
+			return "redirect:/professors/list";
 		}
-		return professors;
+		//return professors;
 	}
 
 	@GetMapping("/new")
-	public String newProfessor(Model model){
+	public String newProfessor(Model model) throws Exception{
 		
+		try {
 		model.addAttribute("professor", new Professor());
+		}catch (Exception e){
+			model.addAttribute("info", e.getMessage());
+		}
 		return "professors/new";
 	}
 	
 	@PostMapping("/save")
 	public String createProfessorForm(Professor professor, Model model) throws Exception {
-		Long id;
-		id=professorService.createProfessor(professor).getId();
-		return "redirect:/professors";
+		
+		if(professor.getName().isEmpty()==false && professor.getLastName().isEmpty()==false) {
+		professorService.createProfessor(professor).getId();
+		model.addAttribute("success", "Profesor registrado correctamente");
+		model.addAttribute("professors", professorService.getAllProfessors());
+		return "professors/list";
+		} else {
+			model.addAttribute("error", "Debe completar todos los campos");
+			return "professors/new";
+		}
 	}
 	
 	@GetMapping("/edit/{id}")
     public String editProfessorForm(@PathVariable("id") Long id, Model model) throws Exception {
-        Professor professor=professorService.findById(id);
-		model.addAttribute("professor", professor);
+        professorToEdit=professorService.findById(id);
+		model.addAttribute("professor", professorToEdit);
         return "professors/edit";
     }
 	
 	@PostMapping("/update/{id}")
-    public String updateProfessor(@PathVariable("id") Long id, Professor professor) throws Exception {
-		Long idd;
-        idd=professorService.updateProfessor(id, professor).getId();
-        return "redirect:/professors";    
+    public String updateProfessor(@PathVariable("id") Long id, Professor professor, Model model) throws Exception {
+		
+		if(professor.getName().isEmpty()==false && professor.getLastName().isEmpty()==false) {
+        professorService.updateProfessor(id, professor);
+        model.addAttribute("success", "Profesor actualizado correctamente");
+        model.addAttribute("professors", professorService.getAllProfessors());
+       	return "professors/list"; 
+		
+		} else {
+			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("professor", professorToEdit);
+			return "professors/edit";
+		}
     }
 	
 	@GetMapping("/delete/{id}")
 	public String deleteProfessor(@PathVariable("id") Long id, Model model) throws Exception {
+		
+		if(!professorService.findProfessorOnCourse().contains(professorService.findById(id))) {
 		professorService.deleteProfessor(professorService.findById(id).getId());
+		//professorService.deleteProfessor(professorService.findById(id).getId());
 		model.addAttribute("success", "Profesor eliminado correctamente");
-		return "redirect:/professors";
+		model.addAttribute("professors", professorService.getAllProfessors());
+		return "professors/list";
+		}else {
+			model.addAttribute("error", "El profesor pertenece a un curso");
+			model.addAttribute("professors", professorService.getAllProfessors());
+			return "professors/list";
+		}
 	}
 
 	public ProfessorService getProfessorService() {

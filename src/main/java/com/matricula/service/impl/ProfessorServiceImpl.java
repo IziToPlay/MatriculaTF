@@ -77,6 +77,11 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		this.professorRepository = professorRepository;
 	}
 
+	@Override
+	public List<Professor> findProfessorOnCourse() {
+		return professorRepository.findProfessorsOnCourse();
+	}
+
 	/*@Override
 	public Page<Professor> findByLastName(String lastName, Pageable pageable) {
 		// TODO Auto-generated method stub

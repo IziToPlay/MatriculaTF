@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Professor;
@@ -47,25 +48,27 @@ public class StudentController {
 	}
 	
 	@GetMapping("/searchStudent")
-	public List<Student> searchStudentById(Long id, Model model) {
+	public String searchStudentById(@RequestParam("id") Long id, Model model) {
 		try {
 			if (id!=null) {
 				students = studentService.finddById(id);
 				if (!students.isEmpty()) {
 					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("studentss", students);
+					return "students/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("students", studentService.getAllStudents());
+					return "redirect:/students/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("students", studentService.getAllStudents());
+				return "redirect:/students/list";
 			}
 		} catch (Exception e) {
 			model.addAttribute("Error student:", e.getMessage());
+			return "redirect:/students/list";
 		}
-		return students;
+		//return students;
 	}
 	
 	@GetMapping("/new")

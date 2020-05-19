@@ -22,4 +22,6 @@ public interface ProfessorService {
 	List<Professor> finddById(Long id);
 
 	Professor getLatestEntry();
+	
+	List<Professor> findProfessorOnCourse();
 }
