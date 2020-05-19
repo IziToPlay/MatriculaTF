@@ -38,7 +38,7 @@
 						<label for="professor">Profesor</label> <select id="professor"
 							class="form-control" th:field="*{professors}" multiple="multiple">
 							<option th:each="professor : ${professors}"
-								th:text="${professor.name + professor.lastName}" th:value="${professor.id}"></option>
+								th:text="${professor.name}" th:value="${professor.id}"></option>
 						</select>
 					</div>
 					

@@ -10,15 +10,14 @@
 			<div class="card-header">Modificar Profesor</div>
 			<div class="card-body">
 			
-			<form th:object="${professor}"  th:action="@{/professors/update/{id}(id=$professor.id})}" 
+			<form th:object="${professor}"  th:action="@{/professors/update/{id}(id=${professor.id})}" 
 					th:method="post">
 					
-						
 					<div class="form-group">
-						<label for="name">Nombres</label> <input type="text"
-							class="form-control" id="name" aria-describedby="name"
-							th:field="*{professor.name}"/>
+						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
+						
+					
 									
 					<div class="form-group">
 						<label for="lastName">Apellidos</label> <input type="text"

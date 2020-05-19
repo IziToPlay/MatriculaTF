@@ -72,64 +72,46 @@ public class ProfessorController {
 	
 	@PostMapping("/save")
 	public String createProfessorForm(Professor professor, Model model) throws Exception {
-		long id;
+		Long id;
 		id=professorService.createProfessor(professor).getId();
-		return "professors/list";
+		return "redirect:/professors";
 	}
 	
 	@GetMapping("/edit/{id}")
-    public String editProfessorForm(@PathVariable("id") long id, Model model) throws Exception {
-        Professor professor = professorService.findById(id);
-        model.addAttribute("professor", professor);
+    public String editProfessorForm(@PathVariable("id") Long id, Model model) throws Exception {
+        Professor professor=professorService.findById(id);
+		model.addAttribute("professor", professor);
         return "professors/edit";
     }
 	
 	@PostMapping("/update/{id}")
-    public String updateProfessor(@PathVariable("id") long id, Professor professor) throws Exception {
-        professorService.updateProfessor(id, professor);
-        return "professors/new";    
+    public String updateProfessor(@PathVariable("id") Long id, Professor professor) throws Exception {
+		Long idd;
+        idd=professorService.updateProfessor(id, professor).getId();
+        return "redirect:/professors";    
     }
 	
 	@GetMapping("/delete/{id}")
-	public String deleteProfessor(@PathVariable("id") long id, Model model) throws Exception {
+	public String deleteProfessor(@PathVariable("id") Long id, Model model) throws Exception {
 		professorService.deleteProfessor(professorService.findById(id).getId());
 		model.addAttribute("success", "Profesor eliminado correctamente");
-		return "redirect:/professors/list";
+		return "/professors/list";
+	}
+
+	public ProfessorService getProfessorService() {
+		return professorService;
+	}
+
+	public void setProfessorService(ProfessorService professorService) {
+		this.professorService = professorService;
+	}
+
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+
+	public void setProfessors(List<Professor> professors) {
+		this.professors = professors;
 	}
 	
-	/*@GetMapping("/querysProfessors")
-	public ModelAndView listAllProffesor(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitPaginationProfessor.initPagination(pageSize, page, PROFESSOR_QUERYS);
-		return modelAndView;
-	}
-	*/
-	/*
-	@GetMapping("/search")
-	public ModelAndView searchByName(@RequestParam("name") String gravity,
-							    @RequestParam("pageSize") Optional<Integer> pageSize,
-							    @RequestParam("page")Optional<Integer> page) throws Exception{
-		
-		ModelAndView modelAndView ;
-		
-		if(!gravity.isEmpty())
-		{
-			if(!this.pageInitPagination.initPaginationSearch(pageSize,page, PRODUCT_PAGE_VIEW, gravity).isEmpty())
-			{
-				modelAndView=this.pageInitPagination.initPaginationSearch(pageSize, page, PRODUCT_QUERYS, gravity);
-			}else
-			{
-				modelAndView=this.pageInitPagination.initPagination(pageSize, page, PRODUCT_QUERYS);
-
-			}
-		}
-		else
-		{
-			modelAndView=this.pageInitPagination.initPagination(pageSize, page, PRODUCT_QUERYS);
-
-		}
-
-		
-		return modelAndView;
-	}*/
 }

@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity 
 @Table(name="professors")
-
 public class Professor {
 
 	@Id
@@ -25,7 +24,7 @@ public class Professor {
 	@Column(name = "last_name")
 	@NotEmpty(message="Ingrese apellido")
 	private String lastName;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -49,8 +48,4 @@ public class Professor {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
-
-
 }

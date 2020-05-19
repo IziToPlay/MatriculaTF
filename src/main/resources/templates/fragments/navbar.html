@@ -14,21 +14,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Academia Freud
+      
           <span class="sr-only">(current)</span>
         </a>
         
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors}" >Gestionar Profesores</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors/list}" >Gestionar Profesores</a>
       </li>
       
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses}" >Gestionar Cursos</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/list}" >Gestionar Cursos</a>
       </li>
       
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students}">Gestionar Alumnos</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestionar Alumnos</a>
       </li>
         
      
@@ -46,7 +45,7 @@
       <li sec:authorize="hasRole('ROLE_USER') "  class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" 
         href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()" >
-          Información Académica
+          Informacion Academica
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" th:href="@{/studentCourses}">Cursos por Semestre</a>
@@ -56,7 +55,7 @@
       
       
       <li class="nav-item"><a th:href="@{/logout}"
-					class="nav-link" sec:authorize="isAuthenticated()"> Cerrar Sesión</a>				
+					class="nav-link" sec:authorize="isAuthenticated()"> Cerrar Sesion</a>				
 	   </li>
     </ul>
   </div>
