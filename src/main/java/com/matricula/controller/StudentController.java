@@ -48,26 +48,26 @@ public class StudentController {
 	}
 	
 	@GetMapping("/searchStudent")
-	public String searchStudentById(@RequestParam("id") Long id, Model model) {
-		try {
-			if (id!=null) {
+	public String searchStudentById(@RequestParam("filterId") String filterId, Model model) {
+	
+			if (!filterId.isEmpty()) {
+				Long id= Long.parseLong(filterId);
 				students = studentService.finddById(id);
 				if (!students.isEmpty()) {
-					model.addAttribute("info", "Busqueda realizada correctamente");
-					model.addAttribute("studentss", students);
+					model.addAttribute("succes", "Busqueda realizada correctamente");
+					model.addAttribute("students", students);
 					return "students/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					return "redirect:/students/list";
+					model.addAttribute("students", students);
+					return "students/list";
 				}
 			} else {
+				model.addAttribute("students", students);
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				return "redirect:/students/list";
+				return "students/list";
 			}
-		} catch (Exception e) {
-			model.addAttribute("Error student:", e.getMessage());
-			return "redirect:/students/list";
-		}
+	
 		//return students;
 	}
 	
