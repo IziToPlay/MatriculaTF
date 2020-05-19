@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
 <body>
 
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+
+			<div class="card-header">Mantenimiento de Estudiantes</div>
+			<div class="card-body">
+
+				<div class="title">
+							<h2> Estudiantes </h2>
+							<a href="/students/new" class="btn btn-primary"> Nuevo Estudiante </a>
+							<h6>__________________________________________________________________</h6>
+						</div>
+
+								<!--  	<form action="/students/searchStudent" method="GET">
+								<div class="form-row align-items-center">
+									<label for="student">Estudiante a Buscar</label> 
+									<select id="student" th:field="*{students}">
+									<option th:each="student : ${students}" th:text="${student.id}" th:value="${course.id}"></option>
+									</select>						
+														
+								<div class="col-auto">
+									<button type="submit" onclick="getData()" class="btn btn-primary">Search</button>
+								</div>
+								</div>
+							</form>			
+							-->
+
+	<div class ="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<!--<th>Cuenta</th>-->
+							<th>Carrera</th>
+							<th>Semestre</th>
+							<th>Seleccionar</th>
+							<th>Seleccionar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="student : ${students}">
+
+						    <td th:text="${student.id}">MatriculaTF</td> 
+							<td th:text="${student.name}">MatriculaTF</td> 
+							<td th:text="${student.lastName}">MatriculaTF</td>
+							<!--<td th:text="${student.account.username}">MatriculaTF</td>-->
+							<td th:text="${student.career}">MatriculaTF</td>
+							<td th:text="${student.semester}">MatriculaTF</td>
+						  <td><a th:href="@{'/student/edit/' + ${student.id}}"
+								class="btn btn-warning">Modificar</a></td>
+							<td><a th:href="@{'/student/delete/' + ${student.id}}"
+								class="btn btn-info">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+
+	</div>
+	
 </body>
 </html>
