@@ -38,7 +38,7 @@ public class ProfessorController {
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
-		return "courses/list";
+		return "professors/list";
 	}
 	
 	@GetMapping("/search")
