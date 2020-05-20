@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matricula.model.entity.Account;
-import com.matricula.model.entity.Professor;
 import com.matricula.model.entity.Student;
 import com.matricula.service.StudentService;
 import com.matricula.service.UserService;
@@ -82,12 +81,13 @@ public class StudentController {
 		return "students/new";
 	}
 	
-	@PostMapping("/save/{id}")
-	public String createStudentForm(@PathVariable("id") Long id, Model model) throws Exception {
+	@PostMapping("/save")
+	public String createStudentForm(Student student, Model model) throws Exception {
 		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
-		numerator++;
-		student.setAccount(userService.findById(numerator));
-		id=studentService.createStudent(studentService.findById(id)).getId();
+		//numerator++;
+		Long numeratorr=1L;
+		student.setAccount(userService.findById(numeratorr));
+		studentService.createStudent(student);
 		model.addAttribute("students", studentService.getAllStudents());
 		return "students/list";
 		} else {
