@@ -24,7 +24,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		//Account account=accountServiceImpl.getLoggedUser();
 		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
 		Student student = null;
-		return studentCourseRepository.fetchStudentCourseBySemester(semester, student.getId());		
+		return studentCourseRepository.fetchStudentCourseBySemester(semester, id);		
 	}
 	
 	

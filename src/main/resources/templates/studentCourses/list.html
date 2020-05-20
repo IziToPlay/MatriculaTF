@@ -31,6 +31,7 @@
 									<option value="201901">201901</option>
 									<option value="201902">201902</option>
 									<option value="202001">202001</option>
+									<option value="202001">202002</option>
 		
 								</select>											
 								<div class="col-auto">
@@ -52,14 +53,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="studentCourses : ${studentCourses}">
+						<tr th:each="studentCourse : ${studentCourses}">
 
-							<td th:text="${studentCourse.semester}">MatriculaTF</td>
+							<td th:text="${studentCourse.enrollment.semester}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.name}">MatriculaTF</td>
-							<td th:text="${studentCourse.professor.name}">MatriculaTF</td>
+							<td th:text="${studentCourse.course.professor.name}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.day}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.startTime}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.endTime}">MatriculaTF</td>
+							
 						</tr>
 					</tbody>
 				</table>

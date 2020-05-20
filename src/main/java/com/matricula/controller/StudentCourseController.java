@@ -48,7 +48,7 @@ public class StudentCourseController {
 	private CourseService courseService;
 	
 	private Course course;
-	private Integer actualSemester=201802;
+	private Integer actualSemester=202002;
 	private Integer searchedSemester;
 	private List<StudentCourse> studentCourses;
 	
@@ -57,7 +57,7 @@ public class StudentCourseController {
 		try {
 			
 		//Long id=userServiceImpl.getLoggedUser().getId();
-		Long id=null;
+		Long id= 2L;
 		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
@@ -65,18 +65,46 @@ public class StudentCourseController {
 		return "studentCourses/listCoursesActualSemester";
 	}
 	
-/*	@GetMapping("/semesterSearched")
+	@GetMapping("/semesterSearched")
 	public String showSemesterSearchedCourses(Model model) throws Exception {
 		try {
 		//Long id=userServiceImpl.getLoggedUser().getId();
-		Long id=null;
+		Long id=2L;
 		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(searchedSemester, id));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
 		return "studentCourses/list";
-	}*/
+	}
 
+	
+	@GetMapping("/search")
+	public String searchProfessorById(@RequestParam("semester") String semester, Model model) throws Exception {
+
+			Long id=2L;
+			
+			if (!semester.isEmpty()) {
+				
+				Integer searchedSemester = Integer.parseInt(semester);  
+				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester, id);
+				if (!studentCourses.isEmpty()) {
+					model.addAttribute("studentCourses", studentCourses);
+					model.addAttribute("success", "Busqueda realizada correctamente");
+					return "studentCourses/list";
+				} else {
+					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("studentCourses", studentCourses);
+					return "studentCourses/list";
+				}
+			} else {
+				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("studentCourses", studentCourses);
+				return "studentCourses/list";
+			}
+			//return professors;
+		} 
+	
+	
 	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
 	@PostMapping("/save/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {

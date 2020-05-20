@@ -12,16 +12,16 @@ INSERT INTO courses (name, amount, professor_id, semester, career, day, start_ti
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Historia', 10, 5, 5, 'Ingenieria ambiental', 'Sabado', '07:00', '09:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 1, 'Ingenieria ambiental', 'Martes', '15:00', '17:00' );
 
-INSERT INTO enrollments (semester) VALUES (1); 
-INSERT INTO enrollments (semester) VALUES (2); 
-INSERT INTO enrollments (semester) VALUES (3); 
-INSERT INTO enrollments (semester) VALUES (4); 
-INSERT INTO enrollments (semester) VALUES (5); 
-INSERT INTO enrollments (semester) VALUES (6); 
-INSERT INTO enrollments (semester) VALUES (7); 
-INSERT INTO enrollments (semester) VALUES (8); 
-INSERT INTO enrollments (semester) VALUES (9); 
-INSERT INTO enrollments (semester) VALUES (10); 
+INSERT INTO enrollments (semester) VALUES (201601); 
+INSERT INTO enrollments (semester) VALUES (201602); 
+INSERT INTO enrollments (semester) VALUES (201701); 
+INSERT INTO enrollments (semester) VALUES (201702); 
+INSERT INTO enrollments (semester) VALUES (201801); 
+INSERT INTO enrollments (semester) VALUES (201802); 
+INSERT INTO enrollments (semester) VALUES (201901); 
+INSERT INTO enrollments (semester) VALUES (201902); 
+INSERT INTO enrollments (semester) VALUES (202001); 
+INSERT INTO enrollments (semester) VALUES (202002); 
 
 INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'12345','admin1');
 INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'123456','alumno1');
@@ -57,4 +57,10 @@ INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, '
 INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Ingenieria ambiental', 2);
 INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria ambiental', 2);
 INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria ambiental', 2);
+
+
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 2, 10);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 3, 10);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 4, 10);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 5, 9);
 
