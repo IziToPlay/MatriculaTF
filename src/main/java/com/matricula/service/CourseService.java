@@ -7,10 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.matricula.model.entity.Course;
+import com.matricula.model.entity.Professor;
 
 public interface CourseService {
 
 	List<Course> getAllCourses();
+	
+	List<Course> findCourseOnStudentCourses();
 		
 	//List<String> getAllCoursesToSearch();
 	

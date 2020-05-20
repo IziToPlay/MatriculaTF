@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.matricula.model.entity.Course;
+import com.matricula.model.entity.Professor;
 import com.matricula.model.entity.Student;
 
 @Repository
@@ -29,6 +30,10 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     
     @Query("SELECT c FROM Course c WHERE c.id=?1")
     Course fetchById(Long courseId);
+    
+    @Query("SELECT sc.course FROM StudentCourse sc")
+    List<Course> findCoursesOnStudentCourse();
+    
     //FindById esta incorporado en el Crud de List
     
   //Query para el Admin

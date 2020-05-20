@@ -115,12 +115,19 @@ public class CourseController {
  
 	
 	@GetMapping("/delete/{id}")
-	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {
-		courseService.deleteCourse(courseService.findById(id).getId());
-		model.addAttribute("success", "Curso eliminado correctamente");
-		model.addAttribute("courses", courseService.getAllCourses());
-		model.addAttribute("coursesToSearch", courseService.getAllCourses());
-		return "courses/list";
+	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {		
+		if(!courseService.findCourseOnStudentCourses().contains(courseService.findById(id))) {
+			courseService.deleteCourse(courseService.findById(id).getId());
+			model.addAttribute("success", "Curso eliminado correctamente");
+			model.addAttribute("courses", courseService.getAllCourses());
+			model.addAttribute("coursesToSearch", courseService.getAllCourses());
+			return "courses/list";
+			}else {
+				model.addAttribute("error", "Se han matriculado alumnos en el curso");
+				model.addAttribute("courses", courseService.getAllCourses());
+				model.addAttribute("coursesToSearch", courseService.getAllCourses());
+				return "courses/list";
+			}
 	}
 	
 	@GetMapping("/search")

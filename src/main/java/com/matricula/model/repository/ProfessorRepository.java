@@ -27,4 +27,5 @@ public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
     
     @Query("SELECT c.professor FROM Course c")
     List<Professor> findProfessorsOnCourse();
+    
 }
