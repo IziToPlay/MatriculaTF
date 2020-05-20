@@ -126,7 +126,7 @@ public class StudentController {
 			model.addAttribute("students", studentService.getAllStudents());
 			return "students/list";
 			}else {
-				model.addAttribute("error", "El alumno se encuentra matriculado en un o mas cursos");
+				model.addAttribute("error", "El alumno se encuentra matriculado en uno o mas cursos");
 				model.addAttribute("students", studentService.getAllStudents());
 				return "students/list";
 			}
