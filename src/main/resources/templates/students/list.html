@@ -56,9 +56,9 @@
 							<!--<td th:text="${student.account.username}">MatriculaTF</td>-->
 							<td th:text="${student.career}">MatriculaTF</td>
 							<td th:text="${student.semester}">MatriculaTF</td>
-						  <td><a th:href="@{'/student/edit/' + ${student.id}}"
+						  <td><a th:href="@{'/students/edit/' + ${student.id}}"
 								class="btn btn-warning">Modificar</a></td>
-							<td><a th:href="@{'/student/delete/' + ${student.id}}"
+							<td><a th:href="@{'/students/delete/' + ${student.id}}"
 								class="btn btn-info">Eliminar</a></td>
 						</tr>
 					</tbody>
