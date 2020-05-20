@@ -107,6 +107,7 @@ public class StudentController {
     public String updateStudent(@PathVariable("id") Long id, Student student, Model model) throws Exception {
 		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
         studentService.updateStudent(id, student);
+        model.addAttribute("success", "Alumno actualizado correctamente");
         model.addAttribute("students", studentService.getAllStudents());
         return "students/list";    
 		} else {
