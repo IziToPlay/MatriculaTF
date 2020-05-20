@@ -110,11 +110,11 @@ public class StudentCourseController {
 	@GetMapping("/register/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
 
-		/*if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
+		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
-			} else {*/
+			} else {
 			StudentCourse studentCourse = new StudentCourse();
 			studentCourse.setStudent(studentService.findById((long)2));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
@@ -127,7 +127,7 @@ public class StudentCourseController {
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
-			//}
+			}
 		}
 	
 	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso 
