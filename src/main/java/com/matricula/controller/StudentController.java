@@ -33,7 +33,7 @@ public class StudentController {
 	private Account account;
 	private Student studentToEdit;
 	private List<Student> students; 
-	private Long numerator=(long) -1;
+	private Long numerator=(long) 0;
 	
 	@GetMapping("/list")
 	public String showAllStudents(Model model) throws Exception{
@@ -84,9 +84,9 @@ public class StudentController {
 	@PostMapping("/save")
 	public String createStudentForm(Student student, Model model) throws Exception {
 		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
-		//numerator++;
-		Long numeratorr=1L;
-		student.setAccount(userService.findById(numeratorr));
+		numerator++;
+		//Long numerator=1L;
+		student.setAccount(userService.findById(numerator));
 		studentService.createStudent(student);
 		model.addAttribute("students", studentService.getAllStudents());
 		model.addAttribute("success", "Alumno registrado correctamente");
