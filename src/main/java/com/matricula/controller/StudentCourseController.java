@@ -139,7 +139,7 @@ public class StudentCourseController {
 		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
 		return "redirect:/studentCourses";
 	}
-
+ 
 	public StudentCourseService getStudentCourseService() {
 		return studentCourseService;
 	}
