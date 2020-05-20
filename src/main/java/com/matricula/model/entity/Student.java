@@ -25,19 +25,19 @@ public class Student {
 	private Account account;
 
 	@Column(name = "name")
-	@NotEmpty(message="Ingrese nombre")
+	//@NotEmpty(message="Ingrese nombre")
 	private String name;
 	
 	@Column(name = "lastname")
-	@NotEmpty(message="Ingrese apellido")
+	//@NotEmpty(message="Ingrese apellido")
 	private String lastName;
 	
 	@Column(name = "career")
-	@NotEmpty(message="Ingrese carrera")
+	//@NotEmpty(message="Ingrese carrera")
 	private String career;
 	
 	@Column(name = "semester")
-	@NotEmpty(message="Ingrese en que ciclo se encuentra")
+	//@NotEmpty(message="Ingrese en que ciclo se encuentra")
 	private Integer semester;
 	
 	
