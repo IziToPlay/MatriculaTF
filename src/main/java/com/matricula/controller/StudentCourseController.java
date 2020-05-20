@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class StudentCourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	private Course course;
+	public Course course=new Course();
 	private Integer actualSemester=202002;
 	private Integer searchedSemester;
 	private List<StudentCourse> studentCourses;
@@ -92,24 +93,30 @@ public class StudentCourseController {
 			//return professors;
 		} 
 	
+	//Obtener Curso para la matricula
+	@GetMapping("/connectCourse/{id}")
+	public String connectCourseToRegister(@PathVariable("id") Long id, Model model) throws Exception {
+		Long idd = courseService.findById(id).getId();
+		return "courses/confirmCourse";
+	}
 	
 	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
-	@GetMapping("/save/{id}")
+	@GetMapping("/register/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
 
-		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()) {
+		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
 			} else {
 			StudentCourse studentCourse = new StudentCourse();
 			studentCourse.setCourse(courseService.findById(id));
-			studentCourse.setStudent(studentService.findById(2L));
+			studentCourse.setStudent(studentService.findById((long)2));
 			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
+			course=courseService.findById(id);
 			course.setAmount(course.getAmount()-1);
 			studentCourseService.createStudentCourse(studentCourse);
-			//Student_Course newStudentCourse = studentCourseService.createStudentCourse(studentCourse);
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
@@ -151,5 +158,77 @@ public class StudentCourseController {
 		course.setAmount(course.getAmount()+1);
 		studentCourseService.deleteStudentCourse(courseToDeleteId);
 		return "redirect:/studentCourses";
+	}
+
+	public StudentCourseService getStudentCourseService() {
+		return studentCourseService;
+	}
+
+	public void setStudentCourseService(StudentCourseService studentCourseService) {
+		this.studentCourseService = studentCourseService;
+	}
+
+	public StudentService getStudentService() {
+		return studentService;
+	}
+
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
+
+	public EnrollmentService getEnrollmentService() {
+		return enrollmentService;
+	}
+
+	public void setEnrollmentService(EnrollmentService enrollmentService) {
+		this.enrollmentService = enrollmentService;
+	}
+
+	public UserServiceImpl getUserServiceImpl() {
+		return userServiceImpl;
+	}
+
+	public void setUserServiceImpl(UserServiceImpl userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
+	}
+
+	public CourseService getCourseService() {
+		return courseService;
+	}
+
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Integer getActualSemester() {
+		return actualSemester;
+	}
+
+	public void setActualSemester(Integer actualSemester) {
+		this.actualSemester = actualSemester;
+	}
+
+	public Integer getSearchedSemester() {
+		return searchedSemester;
+	}
+
+	public void setSearchedSemester(Integer searchedSemester) {
+		this.searchedSemester = searchedSemester;
+	}
+
+	public List<StudentCourse> getStudentCourses() {
+		return studentCourses;
+	}
+
+	public void setStudentCourses(List<StudentCourse> studentCourses) {
+		this.studentCourses = studentCourses;
 	}	
 }

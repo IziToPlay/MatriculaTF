@@ -35,12 +35,12 @@
 
 							<td th:text="${course.id}">MatriculaTF</td>
 							<td th:text="${course.name}">MatriculaTF</td>
-							<td th:text="${course.professor.name + course.professor.lastName}">MatriculaTF</td>
+							<td th:text="${course.professor.name +' '+ course.professor.lastName}">MatriculaTF</td>
 							<td th:text="${course.day}">MatriculaTF</td>
 							<td th:text="${course.startTime}">MatriculaTF</td>
 							<td th:text="${course.endTime}">MatriculaTF</td>
 							<td th:text="${course.amount}">MatriculaTF</td>
-							<td><a th:href="@{'/studentCourses/save/' + ${course.id}}"
+							<td><a th:href="@{'/studentCourses/register/' + ${course.id}}"
 								class="btn btn-warning">Seleccionar</a></td>
 						</tr>
 					</tbody>
