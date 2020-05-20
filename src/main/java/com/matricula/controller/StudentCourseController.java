@@ -48,7 +48,8 @@ public class StudentCourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	public Course course=new Course();
+	private Course course=new Course();
+	private Course courseEdited=new Course();
 	private Integer actualSemester=202002;
 	private String actualSemesterr="202002";
 	private Integer searchedSemester;
@@ -120,11 +121,11 @@ public class StudentCourseController {
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
 			studentCourse.setCourse(courseService.findById(id));
 			studentCourseService.createStudentCourse(studentCourse);
-			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
-			if(course.getAmount()>=0) {
+			//studentCourse.setStudent(studentService.findStudentByAc
 			course=courseService.findById(id);
-			course.setAmount(course.getAmount()-1);
-			}
+			courseEdited=course;
+			courseEdited.setAmount(course.getAmount()-1);
+			courseService.updateCourse(course.getId(), courseEdited);
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
