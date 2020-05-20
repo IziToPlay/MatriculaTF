@@ -94,21 +94,25 @@ public class StudentCourseController {
 	
 	
 	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
-	@PostMapping("/save/{id}")
+	@GetMapping("/save/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
 
 		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
-				return "redirect:/studentCourses";
+			model.addAttribute("courses", courseService.findCoursesAvailables());
+			return "courses/listCoursesAvailables";
 			} else {
 			StudentCourse studentCourse = new StudentCourse();
-			studentCourse.setCourse(course);
+			studentCourse.setCourse(courseService.findById(id));
+			studentCourse.setStudent(studentService.findById(2L));
 			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
 			course.setAmount(course.getAmount()-1);
 			studentCourseService.createStudentCourse(studentCourse);
 			//Student_Course newStudentCourse = studentCourseService.createStudentCourse(studentCourse);
-			return "redirect:/studentCourses"; //+ newStudent.getId();//verificar despues
+			model.addAttribute("success", "Matricula realizada correctamente");
+			model.addAttribute("courses", courseService.findCoursesAvailables());
+			return "courses/listCoursesAvailables";
 			}
 		}
 	
