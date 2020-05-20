@@ -5,9 +5,9 @@ INSERT INTO professors (name, last_name) VALUES ('Hugo', 'Mosquera');
 INSERT INTO professors (name, last_name) VALUES ('Cesar', 'Garcia');
 INSERT INTO professors (name, last_name) VALUES ('Hernan', 'Alvitez');
 
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Geografia', 10, 1, 2, 'Ingenieria ambiental', 'Jueves', '07:00', '09:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Matematica', 10, 2, 3, 'Ingenieria industrial', 'Jueves', '10:00', '12:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Lenguaje', 10, 3, 4, 'Ingenieria de sistemas', 'Lunes', '07:00', '09:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Geografia', 10, 1, 3, 'Ingenieria ambiental', 'Jueves', '07:00', '09:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Matematica', 10, 2, 3, 'Ingenieria ambiental', 'Jueves', '10:00', '12:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Lenguaje', 10, 3, 3, 'Ingenieria ambiental', 'Lunes', '07:00', '09:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Calculo', 10, 4, 2, 'Ingenieria textil', 'Viernes', '13:00', '15:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Historia', 10, 5, 5, 'Ingenieria ambiental', 'Sabado', '07:00', '09:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 1, 'Ingenieria ambiental', 'Martes', '15:00', '17:00' );

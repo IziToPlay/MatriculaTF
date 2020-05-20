@@ -64,42 +64,30 @@ public class StudentCourseController {
 	}
 		return "studentCourses/listCoursesActualSemester";
 	}
-	
-	@GetMapping("/semesterSearched")
-	public String showSemesterSearchedCourses(Model model) throws Exception {
-		try {
-		//Long id=userServiceImpl.getLoggedUser().getId();
-		Long id=2L;
-		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(searchedSemester, id));
-		} catch(Exception e) {
-		model.addAttribute("error",e.getMessage());
-	}
-		return "studentCourses/list";
-	}
-
-	
+		
 	@GetMapping("/search")
 	public String searchProfessorById(@RequestParam("semester") String semester, Model model) throws Exception {
-
+			
+			String url = "studentCourses/list";
 			Long id=2L;
 			
 			if (!semester.isEmpty()) {
 				
-				Integer searchedSemester = Integer.parseInt(semester);  
+				Integer searchedSemester = Integer.parseInt(semester); 
 				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester, id);
 				if (!studentCourses.isEmpty()) {
 					model.addAttribute("studentCourses", studentCourses);
 					model.addAttribute("success", "Busqueda realizada correctamente");
-					return "studentCourses/list";
+					return url;
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
 					model.addAttribute("studentCourses", studentCourses);
-					return "studentCourses/list";
+					return url;
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
 				model.addAttribute("studentCourses", studentCourses);
-				return "studentCourses/list";
+				return url;
 			}
 			//return professors;
 		} 
