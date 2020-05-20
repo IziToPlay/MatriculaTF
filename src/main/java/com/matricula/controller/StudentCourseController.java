@@ -130,6 +130,7 @@ public class StudentCourseController {
 			}
 		}
 	
+	//borrar este comentario <-
 	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso 
 	@GetMapping("/delete/{id}")
 	public String deleteStudentCourse(@PathVariable("id") Long courseToDeleteId, Model model) {
