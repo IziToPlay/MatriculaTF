@@ -5,12 +5,12 @@ INSERT INTO professors (name, last_name) VALUES ('Hugo', 'Mosquera');
 INSERT INTO professors (name, last_name) VALUES ('Cesar', 'Garcia');
 INSERT INTO professors (name, last_name) VALUES ('Hernan', 'Alvitez');
 
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Geografia', 10, 1, 3, 'Ingenieria ambiental', 'Jueves', '07:00', '09:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Matematica', 10, 2, 3, 'Ingenieria ambiental', 'Jueves', '10:00', '12:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Lenguaje', 10, 3, 3, 'Ingenieria ambiental', 'Lunes', '07:00', '09:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Calculo', 10, 4, 2, 'Ingenieria textil', 'Viernes', '13:00', '15:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Historia', 10, 5, 5, 'Ingenieria ambiental', 'Sabado', '07:00', '09:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 1, 'Ingenieria ambiental', 'Martes', '15:00', '17:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Geografia', 10, 1, 201602, 'Ingenieria de Sistemas', 'Jueves', '07:00', '09:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Matematica', 10, 2, 201602, 'Ingenieria de Sistemas', 'Jueves', '10:00', '12:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Lenguaje', 10, 3, 201602, 'Ingenieria de Sistemas', 'Lunes', '07:00', '09:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Calculo', 10, 4, 201701, 'Administracion', 'Viernes', '13:00', '15:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Historia', 10, 5, 201801, 'Ingenieria de Software', 'Sabado', '07:00', '09:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 201601, 'Ingenieria Civil', 'Martes', '15:00', '17:00' );
 
 INSERT INTO enrollments (semester) VALUES (201601); 
 INSERT INTO enrollments (semester) VALUES (201602); 
@@ -48,15 +48,15 @@ INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',10);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',11);
 
 
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (2, 'Jhon', 'Garcia', 'Ingenieria ambiental', 201601);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Miguel', 'Calderon', 'Ingenieria ambiental', 201602);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Ramiro', 'Ramirez', 'Ingenieria industrial', 201701);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Juan', 'Garcia', 'Ingenieria ambiental', 201702);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Maria', 'Gonzales', 'Ingenieria ambiental', 201801);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Fernanda', 'Aliaga', 'Ingenieria ambiental', 201701);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Ingenieria ambiental', 201702);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria ambiental', 201801);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria ambiental', 201802);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (2, 'Jhon', 'Garcia', 'Ingenieria de Sistemas', 201601);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Miguel', 'Calderon', 'Ingenieria de Sistemas', 201602);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Ramiro', 'Ramirez', 'Ingenieria de Sistemas', 201701);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Juan', 'Garcia', 'Ingenieria Civil', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Maria', 'Gonzales', 'Ingenieria de Software', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Fernanda', 'Aliaga', 'Administracion', 201701);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Economia', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria Industrial', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria Civil', 201802);
 
 
 INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 2, 10);
