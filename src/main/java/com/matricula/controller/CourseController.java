@@ -117,7 +117,7 @@ public class CourseController {
 	@GetMapping("/delete/{id}")
 	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {		
 		if(!courseService.findCourseOnStudentCourses().contains(courseService.findById(id))) {
-			courseService.deleteCourse(courseService.findById(id).getId());
+			courseService.deleteCourse(id);
 			model.addAttribute("success", "Curso eliminado correctamente");
 			model.addAttribute("courses", courseService.getAllCourses());
 			model.addAttribute("coursesToSearch", courseService.getAllCourses());

@@ -32,6 +32,7 @@ public class StudentController {
 	
 	private Student student; 
 	private Account account;
+	private Student studentToEdit;
 	private List<Student> students; 
 	private Long numerator=(long) -1;
 	
@@ -83,32 +84,52 @@ public class StudentController {
 	
 	@PostMapping("/save/{id}")
 	public String createStudentForm(@PathVariable("id") Long id, Model model) throws Exception {
+		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
 		numerator++;
 		student.setAccount(userService.findById(numerator));
 		id=studentService.createStudent(studentService.findById(id)).getId();
-
+		model.addAttribute("students", studentService.getAllStudents());
 		return "students/list";
+		} else {
+			model.addAttribute("error", "Debe completar todos los campos");
+			return "students/new";
+		}
 	}
 	
 	@GetMapping("/edit/{id}")
     public String editStudentForm(@PathVariable("id") Long id, Model model) throws Exception {
-        Student student = studentService.findById(id);
-        model.addAttribute("student", student);
+        studentToEdit = studentService.findById(id);
+        model.addAttribute("student", studentToEdit);
         return "students/edit";
     }
 	
 	@PostMapping("/update/{id}")
-    public String updateStudent(@PathVariable("id") Long id, Student student) throws Exception {
+    public String updateStudent(@PathVariable("id") Long id, Student student, Model model) throws Exception {
+		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
         studentService.updateStudent(id, student);
-        return "students/new";    
+        model.addAttribute("students", studentService.getAllStudents());
+        return "students/list";    
+		} else {
+			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("student", studentToEdit);
+			return "students/edit";
+		}
     }
 	
 	@GetMapping("/delete/{id}")
 	public String deleteStudent(@PathVariable("id") Long id, Model model) throws Exception {
-		Student student = studentService.findById(id);
-		studentService.deleteStudent(id);
-		model.addAttribute("success", "Estudiante eliminado correctamente");
-		return "redirect:/students/list";
+		
+		if(!studentService.findStudentOnStudentCourses().contains(studentService.findById(id))) {
+			studentService.deleteStudent(id);
+			//professorService.deleteProfessor(professorService.findById(id).getId());
+			model.addAttribute("success", "Estudiante eliminado correctamente");
+			model.addAttribute("students", studentService.getAllStudents());
+			return "students/list";
+			}else {
+				model.addAttribute("error", "El alumno se encuentra matriculado en un o mas cursos");
+				model.addAttribute("students", studentService.getAllStudents());
+				return "students/list";
+			}
 	}
 	
 }

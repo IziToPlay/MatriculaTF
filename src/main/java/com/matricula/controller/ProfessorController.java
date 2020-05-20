@@ -96,7 +96,7 @@ public class ProfessorController {
 	public String deleteProfessor(@PathVariable("id") Long id, Model model) throws Exception {
 		
 		if(!professorService.findProfessorOnCourse().contains(professorService.findById(id))) {
-		professorService.deleteProfessor(professorService.findById(id).getId());
+		professorService.deleteProfessor(id);
 		//professorService.deleteProfessor(professorService.findById(id).getId());
 		model.addAttribute("success", "Profesor eliminado correctamente");
 		model.addAttribute("professors", professorService.getAllProfessors());

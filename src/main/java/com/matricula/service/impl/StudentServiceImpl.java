@@ -108,6 +108,11 @@ public class StudentServiceImpl implements StudentService {
 		return student;
 	}
 
+	@Override
+	public List<Student> findStudentOnStudentCourses() {
+		return studentRepository.findStudentOnStudentCourses();
+	}
+
 	/**@Override
 	public List<Student> getAllStudent() {
 		// TODO Auto-generated method stub

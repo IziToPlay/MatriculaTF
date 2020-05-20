@@ -13,6 +13,8 @@ public interface StudentService {
 
 	List<Student> getAllStudents();
 	
+	List<Student> findStudentOnStudentCourses();
+	
 	Student createStudent(Student student);
 	
 	Student updateStudent(Long id, Student student);
