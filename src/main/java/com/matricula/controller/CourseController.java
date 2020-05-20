@@ -123,7 +123,7 @@ public class CourseController {
 			model.addAttribute("coursesToSearch", courseService.getAllCourses());
 			return "courses/list";
 			}else {
-				model.addAttribute("error", "Se han matriculado alumnos en el curso");
+				model.addAttribute("error", "Alumnos se encuentran matriculados en el curso");
 				model.addAttribute("courses", courseService.getAllCourses());
 				model.addAttribute("coursesToSearch", courseService.getAllCourses());
 				return "courses/list";
