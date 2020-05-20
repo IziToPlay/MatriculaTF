@@ -121,9 +121,10 @@ public class StudentCourseController {
 			studentCourse.setCourse(courseService.findById(id));
 			studentCourseService.createStudentCourse(studentCourse);
 			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
+			if(course.getAmount()>=0) {
 			course=courseService.findById(id);
 			course.setAmount(course.getAmount()-1);
-			
+			}
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
@@ -133,10 +134,13 @@ public class StudentCourseController {
 	//borrar este comentario <-
 	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso 
 	@GetMapping("/delete/{id}")
-	public String deleteStudentCourse(@PathVariable("id") Long courseToDeleteId, Model model) {
-		Course course=courseService.findById(courseToDeleteId);
+	public String deleteStudentCourse(@PathVariable("id") Long enrollmentToDeleteId, Model model) {
+		StudentCourse searchedStudentCourse=studentCourseService.findById(enrollmentToDeleteId);
+		Course course=courseService.findById(searchedStudentCourse.getCourse().getId());
+		if(course.getAmount()<10) {
 		course.setAmount(course.getAmount()+1);
-		studentCourseService.deleteStudentCourse(courseToDeleteId);
+		}
+		studentCourseService.deleteStudentCourse(enrollmentToDeleteId);
 		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
 		return "redirect:/studentCourses";
 	}
