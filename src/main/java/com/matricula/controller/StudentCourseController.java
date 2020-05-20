@@ -130,7 +130,7 @@ public class StudentCourseController {
 			//}
 		}
 	
-	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso
+	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso 
 	@GetMapping("/delete/{id}")
 	public String deleteStudentCourse(@PathVariable("id") Long courseToDeleteId, Model model) {
 		Course course=courseService.findById(courseToDeleteId);
