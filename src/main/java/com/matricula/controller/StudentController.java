@@ -89,6 +89,7 @@ public class StudentController {
 		student.setAccount(userService.findById(numeratorr));
 		studentService.createStudent(student);
 		model.addAttribute("students", studentService.getAllStudents());
+		model.addAttribute("success", "Alumno registrado correctamente");
 		return "students/list";
 		} else {
 			model.addAttribute("error", "Debe completar todos los campos");
