@@ -34,7 +34,8 @@ public class CourseController {
 	@Autowired
 	private ProfessorService professorService;
 	
-	private Course course;
+	private Course course1;
+	private Course courseToEdit;
 	private Professor professor;
 	private List<String> careers;
 	private List<Integer> semesters;
@@ -62,6 +63,66 @@ public class CourseController {
 		return "courses/listCoursesAvailables";
 	}
 	
+	@GetMapping("/new")
+	public String newCourseForm(Model model) throws Exception{
+		try {
+		model.addAttribute("course", new Course());
+		professor=new Professor();
+		List<Professor> professors = professorService.getAllProfessors();
+		model.addAttribute("professors", professors);
+		return "courses/new";
+		}catch(Exception e) {
+			model.addAttribute("error", e.getMessage());
+			return "redirect:/courses/list";
+		}
+	}
+	
+	@PostMapping("/save")
+	public String saveNewCourse(Course course, Model model) throws Exception {
+		if(!course.getName().isEmpty() && !course.getStartTime().isEmpty() && !course.getEndTime().isEmpty()) {
+					courseService.createCourse(course);
+					model.addAttribute("success", "Curso registrado correctamente");
+					model.addAttribute("courses", courseService.getAllCourses());
+					return "redirect:/courses/list";
+		} else {
+			model.addAttribute("error", "Debe completar todos los campos");
+			return "professors/new";
+		}
+	}
+	
+	@GetMapping("/edit/{id}")
+    public String editCourseForm(@PathVariable("id") long id, Model model) throws Exception {
+        courseToEdit = courseService.findById(id);
+        model.addAttribute("course", courseToEdit);
+        model.addAttribute("professors", professorService.getAllProfessors());
+        return "courses/edit";
+    }
+	
+	@PostMapping("/update/{id}")
+    public String updateCourse(@PathVariable("id") long id, Course course,Model model) throws Exception {
+		if(course.getName().isEmpty()==false && course.getStartTime().isEmpty()==false && course.getEndTime().isEmpty()==false) {
+		courseService.updateCourse(id, course);
+        model.addAttribute("success", "Curso actualizado correctamente");
+		model.addAttribute("courses", courseService.getAllCourses());
+		return "/courses/list";
+		} else {
+			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("course", courseToEdit);
+			model.addAttribute("professors", professorService.getAllProfessors());
+			return "courses/edit";
+		}
+	}
+ 
+	
+	@GetMapping("/delete/{id}")
+	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {
+		courseService.deleteCourse(courseService.findById(id).getId());
+		model.addAttribute("success", "Curso eliminado correctamente");
+		model.addAttribute("courses", courseService.getAllCourses());
+		model.addAttribute("coursesToSearch", courseService.getAllCourses());
+		return "courses/list";
+	}
+	
 	@GetMapping("/search")
 	public String searchCourseByName(@RequestParam("filterName") String filterName, Model model) throws Exception {
 			
@@ -83,43 +144,5 @@ public class CourseController {
 				return "courses/list";
 			}
 		//return courses;
-	}
-	
-	@GetMapping("/new")
-	public String newCoursetForm(Model model){
-		
-		model.addAttribute("course", new Course());
-		professor = new Professor();
-		List<Professor> professors = professorService.getAllProfessors();
-		model.addAttribute("professors", professors);
-		
-		return "courses/new";
-	}
-	
-	@PostMapping("/save")
-	public String saveNewCourse(Course course, Model model) throws Exception {
-		courseService.createCourse(course).getId();
-		return "courses/list";
-	}
-	
-	@GetMapping("/edit/{id}")
-    public String editCourseForm(@PathVariable("id") long id, Model model) throws Exception {
-        Course course = courseService.findById(id);
-        model.addAttribute("course", course);
-        model.addAttribute("professors", professorService.getAllProfessors());
-        return "courses/edit";
-    }
-	
-	@PostMapping("/update/{id}")
-    public String updateCourse(@PathVariable("id") long id, Course course) throws Exception {
-        courseService.updateCourse(id, course);
-        return "redirect:/courses/list";    
-    }
-	
-	@GetMapping("/delete/{id}")
-	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {
-		courseService.deleteCourse(courseService.findById(id).getId());
-		model.addAttribute("success", "Curso eliminado correctamente");
-		return "redirect:/courses/list";
 	}
 }

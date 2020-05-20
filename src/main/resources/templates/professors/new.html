@@ -12,6 +12,7 @@
 				<div class="card-body">
 						<form th:object="${professor}" th:action="@{/professors/save}"
 					th:method="post">
+					
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>

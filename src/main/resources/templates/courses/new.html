@@ -12,6 +12,7 @@
 				<div class="card-body">
 						<form th:object="${course}" th:action="@{/courses/save}"
 					th:method="post">
+					
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
@@ -19,7 +20,7 @@
 					<div class="form-group">
 						<label for="name">Nombre</label> <input type="text"
 							class="form-control" id="name" aria-describedby="name"
-							th:field="*{name}" placeholder="type here ..." />
+							th:field="*{name}" placeholder="Ingrese nombre del curso..." />
 					</div>
 					
 					<div class="form-group">
@@ -56,16 +57,16 @@
 								</select>
 					</div>
 					
-					<label for="twelve-hour-clock">Hora Inicial</label>
-					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="startTime" class="form-control" placeholder="Elegir hora inicial">	
- 					 <i class="fas fa-envelope input-prefix"></i>
+					<div class="form-group">
+						<label for="name">Hora Inicial</label> <input type="text"
+							class="form-control" id="startTime" aria-describedby="startTime"
+							th:field="*{startTime}" placeholder="Ingrese la hora inicial..." />
 					</div>
 					
-					<label for="twelve-hour-clock">Hora Final</label>
-					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="endTime" class="form-control" placeholder="Elegir hora final">
- 					 <i class="fas fa-envelope input-prefix"></i>
+					<div class="form-group">
+						<label for="name">Hora Final</label> <input type="text"
+							class="form-control" id="endTime" aria-describedby="endTime"
+							th:field="*{endTime}" placeholder="Ingrese la hora final..." />
 					</div>
 					
 					<div class="form-group">

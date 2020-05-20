@@ -44,31 +44,6 @@ public class ProfessorController {
 		return "professors/list";
 	}
 	
-	@GetMapping("/search")
-	public String searchProfessorById(@RequestParam("filterId") String filterId, Model model) throws Exception {
-
-			if (!filterId.isEmpty()) {
-				
-				Long id = Long.parseLong(filterId);
-				professors=professorService.finddById(id);
-				if (!professors.isEmpty()) {
-					model.addAttribute("professors", professors);
-					model.addAttribute("success", "Busqueda realizada correctamente");
-					return "professors/list";
-				} else {
-					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("professors", professors);
-					return "professors/list";
-				}
-			} else {
-				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("professors", professors);
-				return "professors/list";
-			}
-			//return professors;
-		} 
-		
-
 	@GetMapping("/new")
 	public String newProfessor(Model model) throws Exception{
 		
@@ -84,7 +59,7 @@ public class ProfessorController {
 	public String createProfessorForm(Professor professor, Model model) throws Exception {
 		
 		if(professor.getName().isEmpty()==false && professor.getLastName().isEmpty()==false) {
-		professorService.createProfessor(professor).getId();
+		professorService.createProfessor(professor);
 		model.addAttribute("success", "Profesor registrado correctamente");
 		model.addAttribute("professors", professorService.getAllProfessors());
 		return "professors/list";
@@ -132,6 +107,30 @@ public class ProfessorController {
 			return "professors/list";
 		}
 	}
+	
+	@GetMapping("/search")
+	public String searchProfessorById(@RequestParam("filterId") String filterId, Model model) throws Exception {
+
+			if (!filterId.isEmpty()) {
+				
+				Long id = Long.parseLong(filterId);
+				professors=professorService.finddById(id);
+				if (!professors.isEmpty()) {
+					model.addAttribute("professors", professors);
+					model.addAttribute("success", "Busqueda realizada correctamente");
+					return "professors/list";
+				} else {
+					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("professors", professors);
+					return "professors/list";
+				}
+			} else {
+				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("professors", professors);
+				return "professors/list";
+			}
+			//return professors;
+		} 
 
 	public ProfessorService getProfessorService() {
 		return professorService;
