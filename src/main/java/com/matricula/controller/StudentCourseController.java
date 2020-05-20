@@ -50,6 +50,7 @@ public class StudentCourseController {
 	
 	public Course course=new Course();
 	private Integer actualSemester=202002;
+	private String actualSemesterr="202002";
 	private Integer searchedSemester;
 	private List<StudentCourse> studentCourses;
 	
@@ -67,28 +68,33 @@ public class StudentCourseController {
 	}
 		
 	@GetMapping("/search")
-	public String searchProfessorById(@RequestParam("semester") String semester, Model model) throws Exception {
+	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {
 			
 			String url = "studentCourses/list";
 			Long id=2L;
 			
 			if (!semester.isEmpty()) {
-				
-				Integer searchedSemester = Integer.parseInt(semester); 
+				searchedSemester = Integer.parseInt(semester); 
 				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester, id);
 				if (!studentCourses.isEmpty()) {
+					if(searchedSemester==Integer.parseInt(actualSemesterr)) {
+					model.addAttribute("studentCourses", studentCourses);
+					model.addAttribute("success", "Busqueda realizadaa correctamente");
+					return "studentCourses/listCoursesActualSemester";
+					} else {
 					model.addAttribute("studentCourses", studentCourses);
 					model.addAttribute("success", "Busqueda realizada correctamente");
 					return url;
+					}
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("studentCourses", studentCourses);
-					return url;
+					model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+					return "studentCourses/listCoursesActualSemester";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("studentCourses", studentCourses);
-				return url;
+				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+				return "studentCourses/listCoursesActualSemester";
 			}
 			//return professors;
 		} 
@@ -104,59 +110,33 @@ public class StudentCourseController {
 	@GetMapping("/register/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
 
-		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
+		/*if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
-			} else {
+			} else {*/
 			StudentCourse studentCourse = new StudentCourse();
-			studentCourse.setCourse(courseService.findById(id));
 			studentCourse.setStudent(studentService.findById((long)2));
-			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
+			studentCourse.setCourse(courseService.findById(id));
+			studentCourseService.createStudentCourse(studentCourse);
+			//studentCourse.setStudent(studentService.findStudentByAccount(accountServiceImpl.getLoggedUser().getId()));
 			course=courseService.findById(id);
 			course.setAmount(course.getAmount()-1);
-			studentCourseService.createStudentCourse(studentCourse);
+			
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
-			}
+			//}
 		}
 	
-	@GetMapping("/searchSemester")
-	public String searchStudentCourseBySemester(Integer semester, Model model) {
-		try {
-			if (semester!=null) {
-				//Long id=userServiceImpl.getLoggedUser().getId();
-				Long id=null;
-				studentCourses = studentCourseService.fetchStudentCourseBySemester(semester, id);
-				if (!studentCourses.isEmpty()) {
-					model.addAttribute("info", "Busqueda realizada correctamente");
-					model.addAttribute("studentCourses", studentCourses);
-					//searchedSemester=semester;
-					return "studentCourses/list";
-				} else {
-					model.addAttribute("info", "No existen coincidencias");
-					Long idd=null;
-					return "redirect:/studentCourses";
-				}
-			} else {
-				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				Long id=null;
-				return "redirect:/studentCourses";
-			}
-		} catch (Exception e) {
-			model.addAttribute("Error Student Course:", e.getMessage());
-			return "redirect:/studentCourses";
-		}
-	}
-
 	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso
 	@GetMapping("/delete/{id}")
-	public String deleteStudentCourse(@PathVariable("id") Long courseToDeleteId) {
+	public String deleteStudentCourse(@PathVariable("id") Long courseToDeleteId, Model model) {
 		Course course=courseService.findById(courseToDeleteId);
 		course.setAmount(course.getAmount()+1);
 		studentCourseService.deleteStudentCourse(courseToDeleteId);
+		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
 		return "redirect:/studentCourses";
 	}
 
