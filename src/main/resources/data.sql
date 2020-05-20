@@ -48,15 +48,15 @@ INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',10);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',11);
 
 
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (2, 'Jhon', 'Garcia', 'Ingenieria ambiental', 2);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Miguel', 'Calderon', 'Ingenieria ambiental', 3);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Ramiro', 'Ramirez', 'Ingenieria industrial', 4);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Juan', 'Garcia', 'Ingenieria ambiental', 5);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Maria', 'Gonzales', 'Ingenieria ambiental', 2);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Fernanda', 'Aliaga', 'Ingenieria ambiental', 2);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Ingenieria ambiental', 2);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria ambiental', 2);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria ambiental', 2);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (2, 'Jhon', 'Garcia', 'Ingenieria ambiental', 201601);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Miguel', 'Calderon', 'Ingenieria ambiental', 201602);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Ramiro', 'Ramirez', 'Ingenieria industrial', 201701);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Juan', 'Garcia', 'Ingenieria ambiental', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Maria', 'Gonzales', 'Ingenieria ambiental', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Fernanda', 'Aliaga', 'Ingenieria ambiental', 201701);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Ingenieria ambiental', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria ambiental', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria ambiental', 201802);
 
 
 INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 2, 10);
