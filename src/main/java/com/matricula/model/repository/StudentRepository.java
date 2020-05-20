@@ -39,6 +39,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	 @Query("SELECT s FROM Student s WHERE s.account.id=?1")
 	 Student findStudentByAccount(Long accountId);
 	 
-	 @Query("SELECT sc.s FROM StudentCourse sc")
+	 @Query("SELECT sc.student FROM StudentCourse sc")
 	 List<Student> findStudentOnStudentCourses();
 }
