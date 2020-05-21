@@ -34,11 +34,8 @@ public class CourseController {
 	@Autowired
 	private ProfessorService professorService;
 	
-	private Course course1;
 	private Course courseToEdit;
 	private Professor professor;
-	private List<String> careers;
-	private List<Integer> semesters;
 	
 	//FOR ADMIN
 	@GetMapping("/list")
@@ -68,6 +65,7 @@ public class CourseController {
 		try {
 		model.addAttribute("course", new Course());
 		professor=new Professor();
+		model.addAttribute("professor", professor); //CAMBIO HECHO
 		List<Professor> professors = professorService.getAllProfessors();
 		model.addAttribute("professors", professors);
 		return "courses/new";
@@ -86,7 +84,9 @@ public class CourseController {
 					return "redirect:/courses/list";
 		} else {
 			model.addAttribute("error", "Debe completar todos los campos");
-			return "professors/new";
+			List<Professor> professors = professorService.getAllProfessors();
+			model.addAttribute("professors", professors);
+			return "courses/new";
 		}
 	}
 	

@@ -121,12 +121,12 @@ public class ProfessorController {
 					return "professors/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("professors", professors);
+					model.addAttribute("professors", professorService.getAllProfessors());
 					return "professors/list";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("professors", professors);
+				model.addAttribute("professors", professorService.getAllProfessors());
 				return "professors/list";
 			}
 			//return professors;

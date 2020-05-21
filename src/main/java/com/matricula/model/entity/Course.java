@@ -28,7 +28,7 @@ public class Course {
 	Long id;
 	
 	@Column(name = "name")
-	//@NotEmpty(message="Ingrese nombre")
+	@NotEmpty//(message="Ingrese nombre")
 	private String name;
 	
 	@Column(name = "amount")
