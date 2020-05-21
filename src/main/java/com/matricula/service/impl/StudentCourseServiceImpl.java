@@ -13,6 +13,7 @@ import com.matricula.model.entity.StudentCourse;
 import com.matricula.model.repository.StudentCourseRepository;
 import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.StudentCourseService;
+import com.matricula.service.UserService;
 
 @Service
 public class StudentCourseServiceImpl implements StudentCourseService {
@@ -23,15 +24,17 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Autowired
 	private StudentRepository studentRepository;
 	
+	@Autowired
+	private UserService userService;
 	
 	
 	@Override
-	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id) {
+	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester) {
 		
-		//Account account=accountServiceImpl.getLoggedUser();
-		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
+		Account account=userService.getLoggedUser();
+		Student student=studentRepository.findStudentByAccount(account.getId());
 		
-		Student student = studentRepository.findStudentByAccount(id);
+		//Student student = studentRepository.findStudentByAccount(id);
 		return studentCourseRepository.fetchStudentCourseBySemester(semester, student.getId());		
 	}
 	
@@ -61,10 +64,10 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	}
 	
 	@Override
-	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse, Long idAccount) {
-		//Account account=accountServiceImpl.getLoggedUser();
-		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
-		Student student = studentRepository.findStudentByAccount(idAccount);
+	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse) {
+		Account account=userService.getLoggedUser();
+		Student student=studentRepository.findStudentByAccount(account.getId());
+		//Student student = studentRepository.findStudentByAccount(idAccount);
 		return studentCourseRepository.CourseStudentRegistered(idCourse, student.getId());
 	}
 	

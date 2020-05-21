@@ -23,17 +23,18 @@ INSERT INTO enrollments (semester) VALUES (201902);
 INSERT INTO enrollments (semester) VALUES (202001); 
 INSERT INTO enrollments (semester) VALUES (202002); 
 
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$74R7RPllrCeUVSueMGfawOlgybGf/h4ftXR80Q/WK0ng6HrNoGhRe','admin1');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$k5qlHBUuffcIYiSqVvCAh.1x4q9.u9SJLhqqxbSzYji8ngiCGkc/e','alumno1');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$qlA.fCjzDDQwf15C8jt2s.oigrOJ6w9xBs0GqQ.ynCWg5fU1KpX1S','alumno2');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$Vro9N8765juT1hIF5rv8s.tHvvQo0K0S.R8RiXvilpZyCx/MgLgYK','alumno3');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$Rfzpsb1GuFZcbiRWNSqKfuHbO4c9e31DySgEfk.nVAwVxdbvtImBy','alumno4');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$rAqh0Sof3MSc8fumqwmiN.7I4I.Cmo0RfulPhwlTKy4Fq9iwYG7R2','alumno5');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$RjDzwQU5Jc0DUIHxJALW7el75E2EJ2BjwR/0GJpWDxKyNDVoaSjSa','alumno6');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$3DkJ4CAxgSQng7boQL530eiahdXXMtWhpWhyUdIY5PQjkqj75LSw6','alumno7');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$9od5QEcqkLUywe3C5nIXAe0rcF4rRVtld3cYt2qpLjhz37JmRQp06','alumno8');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$SBUT5xoNP2Ov2/n5ZiQKleCZNBcsSMMhx.x/r7JFzN594SEHxrvki','alumno9');
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$r8JjKwjMsjV9hVgUOqo7fesiU.EZjDk1SdDJwrMpmkdKAdjwPy892','alumno10');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$12GHs98dakOMeXnDOlc//uKGjX6tuaU1tTBmukz3Xa20Ga6kktVMG','admin1');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$JWYb0OnTUoAW.9OKtCuVzeqcWrpKDiQ9PXjvv6Mr2ADOyU2UOOSuW','%%%%%%%%');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$jkDJGLGy33byW09rVbDaXOToDGS9/9cAtekwBbvwv6.RfojERrBYq','alfreud2');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$NaM0bZdfTl5dpifzkVGG4OurFqFyPPafcXaSxNPKMi2QHtArrJDFy','alfreud3');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$x2lFdBPxjWfNzkIZUhPGM.xTBM8gKVQwRCVTNz2.axpZShwzVFC06','alfreud4');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$oZPd/WisnTlzUnRQ5As1O.fAN7LNyRHJbKACu6j7.RD0owp.948MK','alfreud5');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$1VjCP27b2qFw/5zErj5mtOKr7aElkLGN2VLTYTd92I0e1FBkuCQw2','alfreud6');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$ckpFyvW.Q6LqrJiGCrODHOurNhHL6TARBBIZiR1SP.PWd5pgUHbMe','alfreud7');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$qQZwyEsiPwj9PQkc9Z9PFOWAED9UdG7CBijAkgG24ZU3vqeEVGpya','alfreud8');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$hjK9FUn.G4ZXiLPe1YOTSeAXgGofeZ5iGY2UhB.I5Yy4Qw7cQN4hK','alfreud9');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$MEIGbkA0I6h2C9OXRVtAUOgpDAz2nUM8.MCNVIMP2KTu70wBUgLcq','alfreud10');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$A/MYr2lVeaAGxJdThnst7eTta24VHaD3v4Lie0MrI3UtAn1cYbR0W','alfreud11');
 
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_ADMIN',1);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',2);
@@ -46,21 +47,19 @@ INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',8);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',9);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',10);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',11);
+INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',12);
+
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Jhon', 'Garcia', 'Ingenieria de Sistemas', 201601);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Miguel', 'Calderon', 'Ingenieria de Sistemas', 201602);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Ramiro', 'Ramirez', 'Ingenieria de Sistemas', 201602);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Juan', 'Garcia', 'Ingenieria Civil', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Maria', 'Gonzales', 'Ingenieria de Software', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Fernanda', 'Aliaga', 'Administracion', 201701);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Hector', 'Torres', 'Economia', 201702);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Chi', 'Jin', 'Ingenieria Industrial', 201801);
+INSERT INTO students (account_id, name, lastname, career, semester) VALUES (11, 'Vicesat', 'Martinez', 'Ingenieria Civil', 201802);
 
 
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (2, 'Jhon', 'Garcia', 'Ingenieria de Sistemas', 201601);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (3, 'Miguel', 'Calderon', 'Ingenieria de Sistemas', 201602);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (4, 'Ramiro', 'Ramirez', 'Ingenieria de Sistemas', 201701);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (5, 'Juan', 'Garcia', 'Ingenieria Civil', 201702);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (6, 'Maria', 'Gonzales', 'Ingenieria de Software', 201801);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (7, 'Fernanda', 'Aliaga', 'Administracion', 201701);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (8, 'Hector', 'Torres', 'Economia', 201702);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, 'Chi', 'Jin', 'Ingenieria Industrial', 201801);
-INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Vicesat', 'Martinez', 'Ingenieria Civil', 201802);
 
 
-INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 2, 10);
-INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 3, 10);
-INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 4, 10);
-INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 5, 9);
 

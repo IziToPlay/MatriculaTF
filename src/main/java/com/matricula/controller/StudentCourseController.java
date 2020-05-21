@@ -63,9 +63,9 @@ public class StudentCourseController {
 	public String showActualRegisteredCourses(Model model) throws Exception {
 		try {
 			
-		Long idAccount=userServiceImpl.getLoggedUser().getId();
+		//Long idAccount=userServiceImpl.getLoggedUser().getId();
 		
-		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, idAccount));
+		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
@@ -76,11 +76,11 @@ public class StudentCourseController {
 	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {
 			
 			String url = "studentCourses/list";
-			Long id=userServiceImpl.getLoggedUser().getId();
+			//Long id=userServiceImpl.getLoggedUser().getId();
 			
 			if (!semester.isEmpty()) {
 				searchedSemester = Integer.parseInt(semester); 
-				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester, id);
+				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester);
 				if (!studentCourses.isEmpty()) {
 					if(searchedSemester==Integer.parseInt(actualSemesterr)) {
 					model.addAttribute("studentCourses", studentCourses);
@@ -93,12 +93,12 @@ public class StudentCourseController {
 					}
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+					model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 					return "studentCourses/listCoursesActualSemester";
 				}
 			} else {
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
-				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 				return "studentCourses/listCoursesActualSemester";
 			}
 			//return professors;
@@ -118,7 +118,7 @@ public class StudentCourseController {
 		Long idAccount=userServiceImpl.getLoggedUser().getId();
 		Student student=studentServiceImpl.findStudentByAccount(idAccount);
 		
-		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId(), idAccount).isEmpty()==false) {
+		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";

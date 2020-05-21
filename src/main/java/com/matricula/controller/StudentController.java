@@ -33,7 +33,7 @@ public class StudentController {
 	private Account account;
 	private Student studentToEdit;
 	private List<Student> students; 
-	private Long numerator=(long) 0;
+	private Long numerator=(long) 2;
 	
 	@GetMapping("/list")
 	public String showAllStudents(Model model) throws Exception{

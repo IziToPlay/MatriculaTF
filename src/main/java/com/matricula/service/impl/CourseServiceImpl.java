@@ -14,6 +14,7 @@ import com.matricula.model.entity.Student;
 import com.matricula.model.repository.CourseRepository;
 import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.CourseService;
+import com.matricula.service.UserService;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -21,8 +22,8 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseRepository courseRepository;
 	
-	//@Autowired
-	//private AccountServiceImpl accountServiceImpl;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private StudentServiceImpl studentServiceImpl;
 	
@@ -87,10 +88,10 @@ public class CourseServiceImpl implements CourseService {
 	public List<Course> findCoursesAvailables() {
 	
 		
-		//Account account=accountServiceImpl.getLoggedUser();
-		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
+		Account account=userService.getLoggedUser();
+		Student student=studentServiceImpl.findStudentByAccount(account.getId());
 		 
-		return courseRepository.findCoursesAvailables(studentServiceImpl.findById(2L).getCareer() , studentServiceImpl.findById(2L).getSemester());
+		return courseRepository.findCoursesAvailables(student.getCareer() , student.getSemester());
 	}
 
 	@Override

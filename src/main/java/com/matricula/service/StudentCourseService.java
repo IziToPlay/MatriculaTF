@@ -6,7 +6,7 @@ import com.matricula.model.entity.StudentCourse;
 
 public interface StudentCourseService {
 	
-	List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id);
+	List<StudentCourse> fetchStudentCourseBySemester(Integer semester);
 	
 	StudentCourse createStudentCourse(StudentCourse studentCourse);
 	
@@ -14,7 +14,7 @@ public interface StudentCourseService {
 	
 	void deleteStudentCourse(Long studentCourseId);
 	
-	List<StudentCourse> validateCoursesStudentRegistered(Long idCourse, Long idAccount);
+	List<StudentCourse> validateCoursesStudentRegistered(Long idCourse);
 	
 	//void deleteCourseStudentRegistered(Long idCourse);
 	

@@ -11,12 +11,16 @@ import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.StudentService;
+import com.matricula.service.UserService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override 
 	public List<Student> getAllStudents() {
@@ -101,10 +105,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student findStudentByAccount(Long id){
 		Student student;
-		//Account account=accountServiceImpl.getLoggedUser();
-		//student=studentRepository.findStudentByAccount(account.getId());
+		Account account=userService.getLoggedUser();
+		student=studentRepository.findStudentByAccount(account.getId());
 		//Long id=(long) 0;
-		student=studentRepository.findStudentByAccount(id);
+		//student=studentRepository.findStudentByAccount(id);
 		return student;
 	}
 

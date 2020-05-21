@@ -24,13 +24,11 @@ public class MatriculaTfApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		String password = "12345";
+		/*String password = "Std11";
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
 			System.out.println(bcryptPassword);
-		}
-		
+		}*/
 	}
-
 }
