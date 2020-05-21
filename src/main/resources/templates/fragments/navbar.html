@@ -29,31 +29,14 @@
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
         <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestionar Alumnos</a>
       </li>
-        
-     
-      <li sec:authorize="hasRole('ROLE_USER') "  class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" 
-        th:href="@{/courses/listCoursesAvailables}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()" >
-          Matricula
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" th:href="@{/courses/listCoursesAvailables}">Visualizar Cursos Disponibles</a>
-          
-        </div>
-      </li>	
       
-      
-      <li sec:authorize="hasRole('ROLE_USER') "  class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" 
-        th:href="@{/studentCourses}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()" >
-          Informacion Academica
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" th:href="@{/studentCourses}">Cursos por Semestre</a>
-          
-        </div>
+      <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/studentCourses}">Informacion Academica</a>
       </li>
       
+       <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCoursesAvailables}">Cursos Disponibles</a>
+      </li>
       
       <li class="nav-item"><a th:href="@{/logout}"
 					class="nav-link" sec:authorize="isAuthenticated()"> Cerrar Sesion</a>				
