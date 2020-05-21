@@ -27,6 +27,7 @@ import com.matricula.service.CourseService;
 import com.matricula.service.EnrollmentService;
 import com.matricula.service.StudentCourseService;
 import com.matricula.service.StudentService;
+import com.matricula.service.impl.StudentServiceImpl;
 import com.matricula.service.impl.UserServiceImpl;
 
 @Controller
@@ -46,6 +47,9 @@ public class StudentCourseController {
 	private UserServiceImpl userServiceImpl;
 	
 	@Autowired
+	private StudentServiceImpl studentServiceImpl;
+	
+	@Autowired
 	private CourseService courseService;
 	
 	private Course course=new Course();
@@ -59,9 +63,9 @@ public class StudentCourseController {
 	public String showActualRegisteredCourses(Model model) throws Exception {
 		try {
 			
-		//Long id=userServiceImpl.getLoggedUser().getId();
-		Long id= 2L;
-		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, id));
+		Long idAccount=userServiceImpl.getLoggedUser().getId();
+		
+		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester, idAccount));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
@@ -72,7 +76,7 @@ public class StudentCourseController {
 	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {
 			
 			String url = "studentCourses/list";
-			Long id=2L;
+			Long id=userServiceImpl.getLoggedUser().getId();
 			
 			if (!semester.isEmpty()) {
 				searchedSemester = Integer.parseInt(semester); 
@@ -110,14 +114,17 @@ public class StudentCourseController {
 	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
 	@GetMapping("/register/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
-
-		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
+		
+		Long idAccount=userServiceImpl.getLoggedUser().getId();
+		Student student=studentServiceImpl.findStudentByAccount(idAccount);
+		
+		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId(), idAccount).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
 			} else {
 			StudentCourse studentCourse = new StudentCourse();
-			studentCourse.setStudent(studentService.findById((long)2));
+			studentCourse.setStudent(studentService.findById(student.getId()));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
 			studentCourse.setCourse(courseService.findById(id));
 			studentCourseService.createStudentCourse(studentCourse);

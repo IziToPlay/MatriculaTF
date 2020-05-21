@@ -28,7 +28,7 @@ public interface StudentService {
 	Student getLatestEntry();
 	
 	/*Encontrar cuenta de estudiante*/
-	Student findStudentByAccount();
+	Student findStudentByAccount(Long id);
     //List<Student> findById(Long Id);
 	/*
 	Incident getLatestEntry();

@@ -1,6 +1,8 @@
 package com.matricula.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.matricula.model.entity.Account;
@@ -23,7 +25,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByUserName(userName);
 	}
 
-	/*@Override
+	@Override
 	public Account getLoggedUser() {
 		//Obtener el usuario logeado
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -38,6 +40,6 @@ public class UserServiceImpl implements UserService{
 		Account myUser = userRepository.findByUserName(loggedUser.getUsername());
 		
 		return myUser;
-	}*/
+	}
 
 }

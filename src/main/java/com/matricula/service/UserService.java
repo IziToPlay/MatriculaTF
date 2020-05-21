@@ -8,4 +8,6 @@ public interface UserService {
 	
 	Account findByUserName(String userName);
 
+	Account getLoggedUser();
+
 }

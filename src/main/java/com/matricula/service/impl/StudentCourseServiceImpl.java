@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 import com.matricula.model.entity.StudentCourse;
 import com.matricula.model.repository.StudentCourseRepository;
+import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.StudentCourseService;
 
 @Service
@@ -18,13 +20,19 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Autowired
 	private StudentCourseRepository studentCourseRepository;
 	
+	@Autowired
+	private StudentRepository studentRepository;
+	
+	
+	
 	@Override
 	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester, Long id) {
 		
 		//Account account=accountServiceImpl.getLoggedUser();
 		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
-		Student student = null;
-		return studentCourseRepository.fetchStudentCourseBySemester(semester, id);		
+		
+		Student student = studentRepository.findStudentByAccount(id);
+		return studentCourseRepository.fetchStudentCourseBySemester(semester, student.getId());		
 	}
 	
 	
@@ -53,11 +61,11 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	}
 	
 	@Override
-	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse) {
+	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse, Long idAccount) {
 		//Account account=accountServiceImpl.getLoggedUser();
 		//Student student=studentServiceImpl.findStudentByAccount(account.getId())
-		Student student = null;
-		return studentCourseRepository.CourseStudentRegistered(idCourse, 2L);
+		Student student = studentRepository.findStudentByAccount(idAccount);
+		return studentCourseRepository.CourseStudentRegistered(idCourse, student.getId());
 	}
 	
 	@Override

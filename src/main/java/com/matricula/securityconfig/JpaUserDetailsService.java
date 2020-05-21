@@ -1,6 +1,6 @@
 package com.matricula.securityconfig;
 
-/*
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +47,3 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 }
 
-*/

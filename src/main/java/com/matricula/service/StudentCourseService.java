@@ -14,7 +14,7 @@ public interface StudentCourseService {
 	
 	void deleteStudentCourse(Long studentCourseId);
 	
-	List<StudentCourse> validateCoursesStudentRegistered(Long idCourse);
+	List<StudentCourse> validateCoursesStudentRegistered(Long idCourse, Long idAccount);
 	
 	//void deleteCourseStudentRegistered(Long idCourse);
 	

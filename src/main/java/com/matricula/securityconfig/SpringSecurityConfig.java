@@ -1,6 +1,6 @@
 package com.matricula.securityconfig;
 
-/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,7 +30,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","/home/**", "/css/**","/demo/**", "/scss/**","/js/**", "/assets/**", "/images/**")
+		http.authorizeRequests().antMatchers("/", "/about", "/contact","/home/**", "/css/**","/demo/**", "/scss/**","/js/**", "/assets/**", "/img/**", "/fonts/**")
 		  .permitAll()
 		.anyRequest()
 		  .authenticated()
@@ -57,4 +57,4 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
 
 	}
 }
-*/
+

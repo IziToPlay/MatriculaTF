@@ -98,12 +98,12 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> findById(Long id) {
 		return studentRepository.finById(id);
 	}*/
-
-	public Student findStudentByAccount(){
+	@Override
+	public Student findStudentByAccount(Long id){
 		Student student;
 		//Account account=accountServiceImpl.getLoggedUser();
 		//student=studentRepository.findStudentByAccount(account.getId());
-		Long id=(long) 0;
+		//Long id=(long) 0;
 		student=studentRepository.findStudentByAccount(id);
 		return student;
 	}
@@ -112,6 +112,9 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> findStudentOnStudentCourses() {
 		return studentRepository.findStudentOnStudentCourses();
 	}
+
+	
+
 
 	/**@Override
 	public List<Student> getAllStudent() {
