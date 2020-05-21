@@ -1,0 +1,17 @@
+body{
+	background-color: #762DBA;
+}
+
+.mcontainer{
+	width: 100vw;
+	height: 90vh;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+	text-align: center;
+	color: white;
+	font-size: 4em;
+}
