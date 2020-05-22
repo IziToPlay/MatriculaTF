@@ -59,6 +59,10 @@ INSERT INTO students (account_id, name, lastname, career, semester) VALUES (9, '
 INSERT INTO students (account_id, name, lastname, career, semester) VALUES (10, 'Chi', 'Jin', 'Ingenieria Industrial', 5);
 INSERT INTO students (account_id, name, lastname, career, semester) VALUES (11, 'Vicesat', 'Martinez', 'Ingenieria Civil', 6);
 
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 2, 6);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 3, 7);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (2, 4, 8);
+INSERT INTO students_courses (student_id, course_id, enrollment_id) VALUES (3, 5, 8);
 
 
 
