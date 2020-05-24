@@ -10,7 +10,7 @@ INSERT INTO courses (name, amount, professor_id, semester, career, day, start_ti
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Lenguaje', 10, 3, 2, 'Ingenieria de Sistemas', 'Lunes', '07:00', '09:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Calculo', 10, 4, 3, 'Administracion', 'Viernes', '13:00', '15:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Historia', 10, 5, 5, 'Ingenieria de Software', 'Sabado', '07:00', '09:00' );
-INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 1, 'Ingenieria Civil', 'Martes', '15:00', '17:00' );
+INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Creatividad', 10, 6, 1, 'Economia', 'Martes', '15:00', '17:00' );
 
 INSERT INTO enrollments (semester) VALUES (201601); 
 INSERT INTO enrollments (semester) VALUES (201602); 

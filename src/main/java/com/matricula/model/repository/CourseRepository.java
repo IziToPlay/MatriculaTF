@@ -22,7 +22,7 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
     List<Course> findByName(String name);
 
     //Query para el Alumno para ver sus cursos a matricularse
-    @Query("SELECT c FROM Course c WHERE c.career like %?1% AND c.semester =?2 AND c.amount>0")
+    @Query("SELECT c FROM Course c WHERE c.career like %?1% AND c.semester<=?2 AND c.amount>0")
     List<Course> findCoursesAvailables(String career, Integer semester);
     
     @Query("SELECT c FROM Course c")
