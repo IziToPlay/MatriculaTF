@@ -112,12 +112,17 @@ public class ProfessorController {
 	public String searchProfessorById(@RequestParam("filterId") String filterId, Model model) throws Exception {
 
 			if (!filterId.isEmpty()) {
-				
+				if(isNumeric(filterId)) {
 				Long id = Long.parseLong(filterId);
 				professors=professorService.finddById(id);
+				}else {
+				model.addAttribute("error", "Debe ingresar un numero");
+				model.addAttribute("professors", professorService.getAllProfessors());
+				return "professors/list";	
+				}
 				if (!professors.isEmpty()) {
-					model.addAttribute("professors", professors);
 					model.addAttribute("success", "Busqueda realizada correctamente");
+					model.addAttribute("professors", professors);
 					return "professors/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
@@ -131,6 +136,15 @@ public class ProfessorController {
 			}
 			//return professors;
 		} 
+	
+	private static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
 
 	public ProfessorService getProfessorService() {
 		return professorService;

@@ -136,7 +136,7 @@ public class CourseController {
 			if (!filterName.isEmpty()) {
 				List<Course> courses = courseService.findByName(filterName);
 				if (!courses.isEmpty()) {
-					model.addAttribute("info", "Busqueda realizada correctamente");
+					model.addAttribute("success", "Busqueda realizada correctamente");
 					model.addAttribute("courses", courses);
 					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";

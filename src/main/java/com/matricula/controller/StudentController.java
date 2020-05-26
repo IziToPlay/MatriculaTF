@@ -51,20 +51,26 @@ public class StudentController {
 	public String searchStudentById(@RequestParam("filterId") String filterId, Model model) {
 	
 			if (!filterId.isEmpty()) {
-				Long id= Long.parseLong(filterId);
-				students = studentService.finddById(id);
+					if(isNumeric(filterId)) {
+					Long id= Long.parseLong(filterId);
+					students = studentService.finddById(id);
+					}else {
+					model.addAttribute("error", "Debe ingresar un numero");
+					model.addAttribute("students", studentService.getAllStudents());
+					return "students/list";	
+					}
 				if (!students.isEmpty()) {
-					model.addAttribute("succes", "Busqueda realizada correctamente");
+					model.addAttribute("success", "Busqueda realizada correctamente");
 					model.addAttribute("students", students);
 					return "students/list";
 				} else {
 					model.addAttribute("info", "No existen coincidencias");
-					model.addAttribute("students", students);
+					model.addAttribute("students", studentService.getAllStudents());
 					return "students/list";
 				}
 			} else {
-				model.addAttribute("students", students);
 				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("students", studentService.getAllStudents());
 				return "students/list";
 			}
 	
@@ -132,6 +138,14 @@ public class StudentController {
 				model.addAttribute("students", studentService.getAllStudents());
 				return "students/list";
 			}
+	}
+	private static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
 	}
 	
 }
