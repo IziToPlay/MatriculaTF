@@ -27,7 +27,7 @@ public class Enrollment {
 	
 	@Column(name = "semester")
 	@NotEmpty(message="Ingrese semestre")
-	private int semester;
+	private Integer semester;
 
 	public Long getId() {
 		return id;
@@ -37,11 +37,11 @@ public class Enrollment {
 		this.id = id;
 	}
 
-	public int getSemester() {
+	public Integer getSemester() {
 		return semester;
 	}
 
-	public void setSemester(int semester) {
+	public void setSemester(Integer semester) {
 		this.semester = semester;
 	}
 

@@ -39,13 +39,12 @@
 						<tr>
 							<th>Id</th>
 							<th>Nombre</th>
+							<th>Semestre</th>
 							<th>Profesor</th>
 							<th>Dia</th>
 							<th>Hora Inicial</th>
 							<th>Hora Final</th>
 							<th>Vacantes</th>
-							<th>Seleccionar</th>
-							<th>Seleccionar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,6 +52,7 @@
 
 							<td th:text="${course.id}">MatriculaTF</td>
 							<td th:text="${course.name}">MatriculaTF</td>
+							<td th:text="${course.semester}">MatriculaTF</td>
 							<td th:text="${course.professor.name +' '+ course.professor.lastName}">MatriculaTF</td>
 							<td th:text="${course.day}">MatriculaTF</td>
 							<td th:text="${course.startTime}">MatriculaTF</td>

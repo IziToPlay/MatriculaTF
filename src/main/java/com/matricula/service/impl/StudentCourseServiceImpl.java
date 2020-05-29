@@ -64,11 +64,11 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	}
 	
 	@Override
-	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse) {
+	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse, Integer actualSemester) {
 		Account account=userService.getLoggedUser();
 		Student student=studentRepository.findStudentByAccount(account.getId());
 		//Student student = studentRepository.findStudentByAccount(idAccount);
-		return studentCourseRepository.CourseStudentRegistered(idCourse, student.getId());
+		return studentCourseRepository.CourseStudentRegistered(idCourse, student.getId(),actualSemester);
 	}
 	
 	@Override

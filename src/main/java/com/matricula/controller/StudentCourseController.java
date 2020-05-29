@@ -118,7 +118,7 @@ public class StudentCourseController {
 		Long idAccount=userServiceImpl.getLoggedUser().getId();
 		Student student=studentServiceImpl.findStudentByAccount(idAccount);
 		
-		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
+		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId(),actualSemester).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
@@ -149,8 +149,9 @@ public class StudentCourseController {
 		course.setAmount(course.getAmount()+1);
 		}
 		studentCourseService.deleteStudentCourse(enrollmentToDeleteId);
-		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
-		return "redirect:/studentCourses";
+		model.addAttribute("success","Matricula de curso eliminada correctamente");
+		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
+		return "studentCourses/listCoursesActualSemester";
 	}
  
 	public StudentCourseService getStudentCourseService() {
