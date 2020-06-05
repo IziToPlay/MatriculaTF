@@ -64,8 +64,8 @@ public class CourseController {
 	public String newCourseForm(Model model) throws Exception{
 		try {
 		model.addAttribute("course", new Course());
-		professor=new Professor();
-		model.addAttribute("professor", professor); //CAMBIO HECHO
+		/*professor=new Professor();
+		model.addAttribute("professor", professor); //CAMBIO HECHO*/
 		List<Professor> professors = professorService.getAllProfessors();
 		model.addAttribute("professors", professors);
 		return "courses/new";
@@ -79,11 +79,22 @@ public class CourseController {
 	public String saveNewCourse(Course course, Model model) throws Exception {
 		if(!course.getName().isEmpty() && !course.getStartTime().isEmpty() && !course.getEndTime().isEmpty()) {
 					if(isNumeric(course.getStartTime()) && isNumeric(course.getEndTime())) {
-					courseService.createCourse(course);
-					model.addAttribute("success", "Curso registrado correctamente");
-					model.addAttribute("courses", courseService.getAllCourses());
-					model.addAttribute("coursesToSearch", courseService.getAllCourses());
-					return "courses/list";
+						if(course.getStartTime().length()==2 && course.getEndTime().length()==2) {
+							course.setStartTime(course.getStartTime()+":00");
+							course.setEndTime(course.getEndTime()+":00");
+							courseService.createCourse(course);
+							model.addAttribute("success", "Curso registrado correctamente");
+							model.addAttribute("courses", courseService.getAllCourses());
+							model.addAttribute("coursesToSearch", courseService.getAllCourses());
+							return "courses/list";
+						}else {
+							model.addAttribute("error", "Solo se permiten valores de 2 digitos en Hora Inicial y Final");
+							course.setStartTime(null);
+							course.setEndTime(null);
+							List<Professor> professors = professorService.getAllProfessors();
+							model.addAttribute("professors", professors);
+							return "courses/new";   
+						}
 					} else {
 					model.addAttribute("error", "Debe ingresar valores numericos en Hora Inicial y Final");
 					course.setStartTime(null);
