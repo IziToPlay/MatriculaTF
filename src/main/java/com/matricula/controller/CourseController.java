@@ -78,10 +78,20 @@ public class CourseController {
 	@PostMapping("/save")
 	public String saveNewCourse(Course course, Model model) throws Exception {
 		if(!course.getName().isEmpty() && !course.getStartTime().isEmpty() && !course.getEndTime().isEmpty()) {
+					if(isNumeric(course.getStartTime()) && isNumeric(course.getEndTime())) {
 					courseService.createCourse(course);
 					model.addAttribute("success", "Curso registrado correctamente");
 					model.addAttribute("courses", courseService.getAllCourses());
-					return "redirect:/courses/list";
+					model.addAttribute("coursesToSearch", courseService.getAllCourses());
+					return "courses/list";
+					} else {
+					model.addAttribute("error", "Debe ingresar valores numericos en Hora Inicial y Final");
+					course.setStartTime(null);
+					course.setEndTime(null);
+					List<Professor> professors = professorService.getAllProfessors();
+					model.addAttribute("professors", professors);
+					return "courses/new";
+					}
 		} else {
 			model.addAttribute("error", "Debe completar todos los campos");
 			List<Professor> professors = professorService.getAllProfessors();
@@ -151,5 +161,14 @@ public class CourseController {
 				return "courses/list";
 			}
 		//return courses;
+	}
+	
+	private static boolean isNumeric(String cadena){
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
 	}
 }
