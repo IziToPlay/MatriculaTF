@@ -54,16 +54,38 @@
 								</select>
 					</div>
 					
-					<label for="twelve-hour-clock">Hora Inicial</label>
-					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="startTime" class="form-control" th:field="*{startTime}" placeholder="Elegir hora inicial">
- 					 <i class="fas fa-envelope input-prefix"></i>
+					<div class="form-group">
+								<label for="startTime">Hora Inicial</label> <select id="startTime"
+									name="startTime" th:field="*{startTime}">
+									<option value="07:00">07:00</option>
+									<option value="08:00">08:00</option>
+									<option value="09:00">09:00</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+									<option value="13:00">13:00</option>
+									<option value="14:00">14:00</option>
+									<option value="15:00">15:00</option>
+									<option value="16:00">16:00</option>
+									<option value="17:00">17:00</option>
+									<option value="18:00">18:00</option>
+								</select>
 					</div>
 					
-					<label for="twelve-hour-clock">Hora Final</label>
-					<div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
-  					<input type="text" id="endTime" class="form-control" th:field="*{endTime}" placeholder="Elegir hora final">
-   					 <i class="fas fa-envelope input-prefix"></i>
+					<div class="form-group">
+								<label for="endTime">Hora Final</label> <select id="endTime"
+									name="endTime" th:field="*{endTime}">
+									<option value="09:00">09:00</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+									<option value="13:00">13:00</option>
+									<option value="14:00">14:00</option>
+									<option value="15:00">15:00</option>
+									<option value="16:00">16:00</option>
+									<option value="17:00">17:00</option>
+									<option value="18:00">18:00</option>
+								</select>
 					</div>
 					
 					<div class="form-group">

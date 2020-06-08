@@ -77,32 +77,12 @@ public class CourseController {
 	
 	@PostMapping("/save")
 	public String saveNewCourse(Course course, Model model) throws Exception {
-		if(!course.getName().isEmpty() && !course.getStartTime().isEmpty() && !course.getEndTime().isEmpty()) {
-					if(isNumeric(course.getStartTime()) && isNumeric(course.getEndTime())) {
-						if(course.getStartTime().length()==2 && course.getEndTime().length()==2) {
-							course.setStartTime(course.getStartTime()+":00");
-							course.setEndTime(course.getEndTime()+":00");
-							courseService.createCourse(course);
-							model.addAttribute("success", "Curso registrado correctamente");
-							model.addAttribute("courses", courseService.getAllCourses());
-							model.addAttribute("coursesToSearch", courseService.getAllCourses());
-							return "courses/list";
-						}else {
-							model.addAttribute("error", "Solo se permiten valores de 2 digitos en Hora Inicial y Final");
-							course.setStartTime(null);
-							course.setEndTime(null);
-							List<Professor> professors = professorService.getAllProfessors();
-							model.addAttribute("professors", professors);
-							return "courses/new";   
-						}
-					} else {
-					model.addAttribute("error", "Debe ingresar valores numericos en Hora Inicial y Final");
-					course.setStartTime(null);
-					course.setEndTime(null);
-					List<Professor> professors = professorService.getAllProfessors();
-					model.addAttribute("professors", professors);
-					return "courses/new";
-					}
+		if(!course.getName().isEmpty()) {
+			courseService.createCourse(course);
+			model.addAttribute("success", "Curso registrado correctamente");
+			model.addAttribute("courses", courseService.getAllCourses());
+			model.addAttribute("coursesToSearch", courseService.getAllCourses());
+			return "courses/list";
 		} else {
 			model.addAttribute("error", "Debe completar todos los campos");
 			List<Professor> professors = professorService.getAllProfessors();
@@ -121,7 +101,7 @@ public class CourseController {
 	
 	@PostMapping("/update/{id}")
     public String updateCourse(@PathVariable("id") long id, Course course,Model model) throws Exception {
-		if(course.getName().isEmpty()==false && course.getStartTime().isEmpty()==false && course.getEndTime().isEmpty()==false) {
+		if(course.getName().isEmpty()==false) {
 		courseService.updateCourse(id, course);
         model.addAttribute("success", "Curso actualizado correctamente");
 		model.addAttribute("courses", courseService.getAllCourses());
@@ -172,14 +152,5 @@ public class CourseController {
 				return "courses/list";
 			}
 		//return courses;
-	}
-	
-	private static boolean isNumeric(String cadena){
-		try {
-			Integer.parseInt(cadena);
-			return true;
-		} catch (NumberFormatException nfe){
-			return false;
-		}
 	}
 }
