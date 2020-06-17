@@ -105,6 +105,7 @@ public class CourseController {
 		courseService.updateCourse(id, course);
         model.addAttribute("success", "Curso actualizado correctamente");
 		model.addAttribute("courses", courseService.getAllCourses());
+		model.addAttribute("coursesToSearch", courseService.getAllCourses());
 		return "courses/list";
 		} else {
 			model.addAttribute("error","Debe completar todos los campos");
